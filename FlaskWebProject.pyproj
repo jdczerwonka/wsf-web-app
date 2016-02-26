@@ -18,6 +18,8 @@
     <PythonWsgiHandler>$(MSBuildProjectName).app</PythonWsgiHandler>
     <Name>FlaskWebProject</Name>
     <RootNamespace>FlaskWebProject</RootNamespace>
+    <InterpreterId>{24ac4cc3-e985-4ca7-ba47-342e04a35728}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,12 +30,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskWebProject\resources\todolist.py" />
+    <Compile Include="FlaskWebProject\resources\todo.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject\resources\__init__.py" />
     <Compile Include="runserver.py" />
     <Compile Include="FlaskWebProject\__init__.py" />
     <Compile Include="FlaskWebProject\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FlaskWebProject\" />
+    <Folder Include="FlaskWebProject\resources\" />
     <Folder Include="FlaskWebProject\static\" />
     <Folder Include="FlaskWebProject\static\content\" />
     <Folder Include="FlaskWebProject\static\fonts\" />
@@ -70,6 +78,19 @@
     <Content Include="FlaskWebProject\templates\layout.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{24ac4cc3-e985-4ca7-ba47-342e04a35728}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>2.7</Version>
+      <Description>env (Python 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 
