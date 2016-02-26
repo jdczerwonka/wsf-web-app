@@ -4,8 +4,8 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template
-from FlaskWebProject.resources import todo
-from FlaskWebProject.resources import todolist
+from FlaskWebProject.resources import Todo
+from FlaskWebProject.resources import TodoList
 from FlaskWebProject import app, api
 
 @app.route('/')
