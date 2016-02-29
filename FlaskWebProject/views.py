@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import render_template
 from FlaskWebProject.resources import Todo
 from FlaskWebProject.resources import TodoList
+from FlaskWebProject.resources.ingredients import DietIngredientsApi
 from FlaskWebProject import app, api
 
 @app.route('/')
@@ -40,3 +41,4 @@ def about():
 
 api.add_resource(TodoList, '/todos')
 api.add_resource(Todo, '/todos/<todo_id>')
+api.add_resource(DietIngredientsApi, '/ingredients')
