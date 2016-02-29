@@ -23,7 +23,7 @@ class Diets(Base):
     quantity = Column(DECIMAL(9,2))
     cost = Column(MONEY)
 
-class DietIngredients(Base):
+class Ingredients(Base):
     __tablename__ = 'diet_ingredients'
 
     id = Column(BIGINT, primary_key=True)
@@ -34,6 +34,11 @@ class DietIngredients(Base):
 
     @property
     def serialize(self):
+        #return {
+        #    'ingredient' : self.ingredient,
+        #    'quantity' : self.quantity,
+        #    'cost' : self.cost
+        #}
         return {
             'ingredient' : self.ingredient,
             'quantity' : self.quantity,

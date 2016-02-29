@@ -30,18 +30,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskWebProject\db\schemas.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FlaskWebProject\db\tables.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlaskWebProject\db\__init__.py" />
-    <Compile Include="FlaskWebProject\resources\ingredients.py">
+    <Compile Include="FlaskWebProject\db\resources.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FlaskWebProject\resources\todolist.py" />
-    <Compile Include="FlaskWebProject\resources\todo.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FlaskWebProject\resources\__init__.py" />
     <Compile Include="runserver.py" />
     <Compile Include="FlaskWebProject\__init__.py" />
     <Compile Include="FlaskWebProject\views.py" />
@@ -49,7 +47,6 @@
   <ItemGroup>
     <Folder Include="FlaskWebProject\" />
     <Folder Include="FlaskWebProject\db\" />
-    <Folder Include="FlaskWebProject\resources\" />
     <Folder Include="FlaskWebProject\static\" />
     <Folder Include="FlaskWebProject\static\content\" />
     <Folder Include="FlaskWebProject\static\fonts\" />

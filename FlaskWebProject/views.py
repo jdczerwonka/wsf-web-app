@@ -4,9 +4,7 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template
-from FlaskWebProject.resources import Todo
-from FlaskWebProject.resources import TodoList
-from FlaskWebProject.resources.ingredients import DietIngredientsApi
+from FlaskWebProject.db.resources import IngredientsApi, IngredientApi
 from FlaskWebProject import app, api
 
 @app.route('/')
@@ -39,6 +37,5 @@ def about():
         message='Your application description page.'
     )
 
-api.add_resource(TodoList, '/todos')
-api.add_resource(Todo, '/todos/<todo_id>')
-api.add_resource(DietIngredientsApi, '/ingredients')
+api.add_resource(IngredientsApi, '/ingredients')
+api.add_resource(IngredientApi, '/ingredients/<IngrStr>')

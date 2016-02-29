@@ -4,6 +4,7 @@ Flask-RESTful==0.3.5
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
+marshmallow==2.6.0
 pyodbc==3.0.10
 python-dateutil==2.4.2
 pytz==2015.7
