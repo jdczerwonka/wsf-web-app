@@ -8,7 +8,7 @@ class Diets(Base):
     __tablename__ = 'diets'
 
     order_id = Column(VARCHAR(25), primary_key=True)
-    group_num = Column(VARCHAR(25))
+    group_num = Column(VARCHAR(25), ForeignKey('groups.group_num'))
     group_type = Column(VARCHAR(25))
     delivery_date = Column(DATE)
     delivery_month = Column(VARCHAR(7))
@@ -32,15 +32,14 @@ class Ingredients(Base):
     quantity = Column(DECIMAL(8,2))
     cost = Column(MONEY)
 
-    @property
-    def serialize(self):
-        #return {
-        #    'ingredient' : self.ingredient,
-        #    'quantity' : self.quantity,
-        #    'cost' : self.cost
-        #}
-        return {
-            'ingredient' : self.ingredient,
-            'quantity' : self.quantity,
-            'cost' : self.cost
-        }
+class Groups(Base):
+    __tablename__ = 'groups'
+
+    group_num = Column(VARCHAR(25), primary_key=True)
+    group_type = Column(VARCHAR(25))
+    status = Column(VARCHAR(25))
+    producer = Column(VARCHAR(50))
+    site = Column(VARCHAR(50))
+    barn = Column(VARCHAR(50))
+    open_date = Column(DATE)
+    close_date = Column(DATE)
