@@ -4,7 +4,7 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template
-from FlaskWebProject.db.resources import *
+from FlaskWebProject.db.resources import IngredientsApi, GroupsApi
 from FlaskWebProject import app, api
 
 @app.route('/')
@@ -37,5 +37,5 @@ def about():
         message='Your application description page.'
     )
 
-api.add_resource(IngredientsApi, '/ingredients', '/ingredients/<string:IngrStr>')
-api.add_resource(GroupsApi, '/groups', '/groups/<string:GroupStr>')
+api.add_resource(IngredientsApi, '/ingredients/<IngrStr>')
+api.add_resource(GroupsApi, '/groups/<GroupStr>')
