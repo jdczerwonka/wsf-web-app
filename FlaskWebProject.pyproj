@@ -33,7 +33,7 @@
     <Compile Include="FlaskWebProject\db\schemas.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FlaskWebProject\db\tables.py">
+    <Compile Include="FlaskWebProject\db\models.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlaskWebProject\db\__init__.py" />
