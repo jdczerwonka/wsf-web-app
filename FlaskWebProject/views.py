@@ -38,4 +38,4 @@ def about():
     )
 
 api.add_resource(IngredientsApi, '/ingredients', '/ingredients/<IngrStr>')
-api.add_resource(GroupsApi, '/groups', '/groups/<GroupStr>')
+api.add_resource(GroupsApi, '/groups', '/groups/<GroupStr>', '/groups/<GroupStr>/<GroupInfo>')

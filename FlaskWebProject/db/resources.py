@@ -16,6 +16,8 @@ DB_URI = 'mssql+pyodbc://' + USERNAME + ':' + PASSWORD + '@' + SERVER + '/' + DA
 parser = reqparse.RequestParser()
 parser.add_argument('start_date', type=inputs.date)
 parser.add_argument('end_date', type=inputs.date)
+parser.add_argument('month_id', type=str)
+parser.add_argument('week_id', type=str)
 
 def CreateSession():
         engine = create_engine(DB_URI)
@@ -30,7 +32,13 @@ class IngredientsApi(Resource):
 
         a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
 
-        if args['start_date'] is None and args['end_date'] is None:
+        if args['month_id'] is not None:
+            a_query = a_query.join(Diets).filter(Diets.delivery_month == args['month_id'])
+            print args['month_id']
+        elif args['week_id'] is not None:
+            a_query = a_query.join(Diets).filter(Diets.delivery_week == args['week_id'])
+            print args['week_id']
+        elif args['start_date'] is None and args['end_date'] is None:
             pass
         else:
             if args['start_date'] is None:
@@ -51,13 +59,35 @@ class IngredientsApi(Resource):
         return jsonify({'ingredients' : result.data})
 
 class GroupsApi(Resource):
-    def get(self, GroupStr = 'ALL'):
+    def get(self, GroupInfo = None, GroupStr = 'ALL'):
         session = CreateSession()
+        move_bool = False
 
-        if GroupStr.upper() == 'ALL':
-            groups = session.query(Groups).order_by(Groups.group_num.asc()).all()
+        if GroupInfo is None:
+            a_query = session.query(Groups)
+            table = Groups
+        elif GroupInfo.upper() == 'FEED':
+            a_query = session.query(func.sum(Diets.quantity).label('quantity'), func.sum(Diets.cost).label('cost'), Diets.group_num).group_by(Diets.group_num)
+            table = Diets
+        elif GroupInfo.upper() == 'DEATHS':
+            a_query = session.query(func.sum(Deaths.quantity).label('death_num'), func.sum(Deaths.weight).label('weight'), Deaths.group_num).group_by(Deaths.group_num)
+            table = Deaths
+        elif GroupInfo.upper() in ['ADJ', 'BGM', 'CON', 'DIS', 'DOT', 'GA', 'GS', 'NV', 'PWP', 'SA', 'SMS', 'SR', 'ST', 'TFP', 'WPS', 'YD']:
+            a_query = session.query(func.abs(func.sum(Movements.quantity)).label('quantity'), func.abs(func.sum(Movements.weight)).label('weight'), func.abs(func.sum(Movements.cost)).label('cost'), Movements.location_id.label('group_num'))
+            a_query = a_query.group_by(Movements.location_id).filter( ((Movements.location_type == 'group') | (Movements.location_type == 'sow_unit')) & (Movements.event_code == GroupInfo))
+            table = Movements
+            move_bool = True
+
+        if move_bool:
+            if GroupStr.upper() == 'ALL':
+                groups = a_query.order_by(table.location_id.desc()).all()
+            else:
+                groups = a_query.filter(table.location_id == GroupStr).all()        
         else:
-            groups = session.query(Groups).filter(Groups.group_num == GroupStr).all()
+            if GroupStr.upper() == 'ALL':
+                groups = a_query.order_by(table.group_num.desc()).all()
+            else:
+                groups = a_query.filter(table.group_num == GroupStr).all()
 
         schema = GroupsSchema(many=True)
         result = schema.dump(groups)

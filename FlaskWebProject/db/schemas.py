@@ -14,3 +14,7 @@ class GroupsSchema(Schema):
     barn = fields.Str()
     open_date = fields.Date()
     close_date = fields.Date()
+    death_num = fields.Decimal(2)
+    weight = fields.Decimal(2)
+    quantity = fields.Decimal(2)
+    cost = fields.Decimal(2)
