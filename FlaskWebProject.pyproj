@@ -53,10 +53,12 @@
     <Folder Include="FlaskWebProject\static\" />
     <Folder Include="FlaskWebProject\static\content\" />
     <Folder Include="FlaskWebProject\static\fonts\" />
+    <Folder Include="FlaskWebProject\static\storage\" />
     <Folder Include="FlaskWebProject\static\scripts\" />
     <Folder Include="FlaskWebProject\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskWebProject\static\storage\Cargill Lean Value Matrix.csv" />
     <Content Include="FlaskWebProject\templates\weightOpt.html" />
     <Content Include="requirements.txt" />
     <Content Include="FlaskWebProject\static\content\bootstrap.css" />

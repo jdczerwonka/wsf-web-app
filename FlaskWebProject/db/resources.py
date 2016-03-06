@@ -6,6 +6,7 @@ from FlaskWebProject.db.models import *
 from FlaskWebProject.db.schemas import *
 from FlaskWebProject.classes.BarnModel import *
 from datetime import date
+import numpy
 
 SERVER = "wsf-db-server.database.windows.net"
 USERNAME = "jdczerwonka@wsf-db-server"
@@ -96,4 +97,36 @@ class GroupsApi(Resource):
 
 class WeightOptApi(Resource):
     def get(self):
-        pass
+        w2fModel = [0, 288.798017, -81.388061, 10.101958, -0.623565, 0.018835, -0.000222]
+        finModel = [0, 210.431209, -65.244076, 9.294793, -0.678313, 0.024900, -0.000365]
+        awgModel = [0.43503557, 2.16250341, -0.09743488, 0.00122924]
+        awfcModel = [1.1, 0.10728206]
+        awgAdjust = [273, 0, 24.4]
+        awfcAdjust = [2.64, 0, 24.4]
+
+        wtCutoff = numpy.array([12, 20, 30,
+                    50, 80, 120, 160,
+                    200, 225, 245, 265])
+
+        priceCutoff = [0.29721160, 0.19111814, 0.11239397,
+                        0.09492490, 0.08964955, 0.08389767, 0.08180934,
+                        0.08025336, 0.07925855, 0.09876173, 0.10228566]
+
+        priceCutoff2 = [0.34228121, 0.23497637, 0.15338756,
+				        0.10120521, 0.10381095, 0.09572995, 0.08078402,
+				        0.07826039, 0.07829362, 0.10029394, 0.10316896]
+
+        priceCutoff3 = [0.29438071, 0.18980649, 0.11205248,
+				        0.09077630, 0.08552250, 0.07965624, 0.07812813, 
+				        0.07665118, 0.07570529, 0.09360718, 0.09719425]
+
+        sm = SalesModel(CarcassAvg = 218, CarcassStdDev = 19, LeanAvg = 54.30,
+                LeanStdDev = 2.11, YieldAvg = 76.29, BasePrice = 71.64)
+
+        gm = PigGrowthModel(awgModel, awfcModel, 24.4, awgAdjust, awfcAdjust, priceCutoff3, wtCutoff)
+
+        bm = BarnModel(w2fModel, gm, sm, StartWeight = 12.5, BarnSize = 5220, DeathLossPer = 4.37, DiscountLossPer = 2.16, WeeklyRent = 3880)
+
+        x = numpy.arange(50, 111, 1)
+
+        return jsonify({'weights' : bm.calc_opt_price_curve(x)})
