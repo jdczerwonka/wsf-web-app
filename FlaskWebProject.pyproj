@@ -30,6 +30,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskWebProject\classes\BarnModel.py" />
+    <Compile Include="FlaskWebProject\classes\__init__.py" />
     <Compile Include="FlaskWebProject\db\schemas.py">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +49,7 @@
   <ItemGroup>
     <Folder Include="FlaskWebProject\" />
     <Folder Include="FlaskWebProject\db\" />
+    <Folder Include="FlaskWebProject\classes\" />
     <Folder Include="FlaskWebProject\static\" />
     <Folder Include="FlaskWebProject\static\content\" />
     <Folder Include="FlaskWebProject\static\fonts\" />
@@ -54,6 +57,7 @@
     <Folder Include="FlaskWebProject\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskWebProject\templates\weightOpt.html" />
     <Content Include="requirements.txt" />
     <Content Include="FlaskWebProject\static\content\bootstrap.css" />
     <Content Include="FlaskWebProject\static\content\bootstrap.min.css" />

@@ -4,6 +4,7 @@ from sqlalchemy import func, create_engine
 from sqlalchemy.orm import sessionmaker
 from FlaskWebProject.db.models import *
 from FlaskWebProject.db.schemas import *
+from FlaskWebProject.classes.BarnModel import *
 from datetime import date
 
 SERVER = "wsf-db-server.database.windows.net"
@@ -92,3 +93,7 @@ class GroupsApi(Resource):
         schema = GroupsSchema(many=True)
         result = schema.dump(groups)
         return jsonify({'groups' : result.data})
+
+class WeightOptApi(Resource):
+    def get(self):
+        pass
