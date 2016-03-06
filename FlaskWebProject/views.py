@@ -37,15 +37,5 @@ def about():
         message='Your application description page.'
     )
 
-#@app.route('/weightOpt')
-#def weightOpt():
-#    """Renders the weight optimization page."""
-#    return render_template(
-#        'weightOpt.html',
-#        title='Weight Optimization',
-#        year=datetime.now().year,
-#        message='Weight Optimization Page'
-#    )
-
 api.add_resource(IngredientsApi, '/ingredients', '/ingredients/<IngrStr>')
 api.add_resource(GroupsApi, '/groups', '/groups/<GroupStr>', '/groups/<GroupStr>/<GroupInfo>')
