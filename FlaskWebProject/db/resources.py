@@ -7,6 +7,7 @@ from FlaskWebProject.db.schemas import *
 from FlaskWebProject.classes.BarnModel import *
 from datetime import date
 import numpy
+import simplejson
 
 SERVER = "wsf-db-server.database.windows.net"
 USERNAME = "jdczerwonka@wsf-db-server"
@@ -129,4 +130,4 @@ class WeightOptApi(Resource):
 
         x = numpy.arange(50, 111, 1)
 
-        return jsonify({'weights' : bm.calc_opt_price_curve(x)})
+        return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})
