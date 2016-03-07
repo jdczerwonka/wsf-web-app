@@ -22,6 +22,8 @@ parser.add_argument('end_date', type=inputs.date)
 parser.add_argument('month_id', type=str)
 parser.add_argument('week_id', type=str)
 parser.add_argument('curve', type=str, default='OPT_PRICE')
+parser.add_argument('barn_size', type=int, default=2500)
+parser.add_argument('base_price', type=float)
 
 def CreateSession():
         engine = create_engine(DB_URI)
@@ -124,12 +126,14 @@ class WeightOptApi(Resource):
 				        0.09077630, 0.08552250, 0.07965624, 0.07812813, 
 				        0.07665118, 0.07570529, 0.09360718, 0.09719425]
 
+        #BasePrice = 71.64
         sm = SalesModel(CarcassAvg = 218, CarcassStdDev = 19, LeanAvg = 54.30,
-                LeanStdDev = 2.11, YieldAvg = 76.29, BasePrice = 71.64)
+                LeanStdDev = 2.11, YieldAvg = 76.29, BasePrice=args['base_price'])
 
         gm = PigGrowthModel(awgModel, awfcModel, 24.4, awgAdjust, awfcAdjust, priceCutoff3, wtCutoff)
 
-        bm = BarnModel(w2fModel, gm, sm, StartWeight = 12.5, BarnSize = 5220, DeathLossPer = 4.37, DiscountLossPer = 2.16, WeeklyRent = 3880)
+        #BarnSize = 5220
+        bm = BarnModel(w2fModel, gm, sm, StartWeight = 12.5, BarnSize = args['barn_size'], DeathLossPer = 4.37, DiscountLossPer = 2.16, WeeklyRent = 3880)
 
         if args['curve'].upper() == 'OPT_PRICE':
             x = numpy.arange(270, 301, 1)
