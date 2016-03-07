@@ -58,6 +58,12 @@
     <Folder Include="FlaskWebProject\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.css" />
+    <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.min.css" />
+    <Content Include="FlaskWebProject\static\scripts\bootstrap-3.3.6.js" />
+    <Content Include="FlaskWebProject\static\scripts\bootstrap-3.3.6.min.js" />
+    <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.js" />
+    <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.min.js" />
     <Content Include="FlaskWebProject\static\storage\Cargill Lean Value Matrix.csv" />
     <Content Include="FlaskWebProject\templates\weightOpt.html" />
     <Content Include="requirements.txt" />
