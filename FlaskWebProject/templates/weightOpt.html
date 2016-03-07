@@ -47,11 +47,11 @@
     });
 
     function generatePlot(param) {
-        if (typeof param === undefined) { 
-            param = "";
-        }
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
-        url = url + "?" + param;
+        if (typeof param !== undefined) {
+            url = url + "?" + param;
+        }
+        
         $.getJSON(url).done(function (data) {
             var trace1 = {
                 x: data.xval,
