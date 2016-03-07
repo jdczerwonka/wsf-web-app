@@ -235,7 +235,7 @@ class BarnModel():
 
     def calc_opt_price_curve(self, arr, PerPig = False):
         opt_price_arr = []
-        wt_arr = numpy.arange(260, 325, 5)
+        wt_arr = numpy.arange(270, 325, 5)
 
         for i in range(0, len(arr)):
             self.sales.base_price = arr[i]

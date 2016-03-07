@@ -21,6 +21,7 @@ parser.add_argument('start_date', type=inputs.date)
 parser.add_argument('end_date', type=inputs.date)
 parser.add_argument('month_id', type=str)
 parser.add_argument('week_id', type=str)
+parser.add_argument('curve', type=str, default='OPT_PRICE')
 
 def CreateSession():
         engine = create_engine(DB_URI)
@@ -98,6 +99,8 @@ class GroupsApi(Resource):
 
 class WeightOptApi(Resource):
     def get(self):
+        args = parser.parse_args()
+
         w2fModel = [0, 288.798017, -81.388061, 10.101958, -0.623565, 0.018835, -0.000222]
         finModel = [0, 210.431209, -65.244076, 9.294793, -0.678313, 0.024900, -0.000365]
         awgModel = [0.43503557, 2.16250341, -0.09743488, 0.00122924]
@@ -128,7 +131,9 @@ class WeightOptApi(Resource):
 
         bm = BarnModel(w2fModel, gm, sm, StartWeight = 12.5, BarnSize = 5220, DeathLossPer = 4.37, DiscountLossPer = 2.16, WeeklyRent = 3880)
 
-        x = numpy.arange(50, 111, 1)
-        return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})
-        #x = numpy.arange(270, 305, 1)
-        #return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_rev_curve(x).tolist()})
+        if args['curve'].upper() == 'OPT_PRICE':
+            x = numpy.arange(270, 305, 1)
+            return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_rev_curve(x).tolist()})
+        elif args['curve'].upper() == 'OPT_PRICE_RANGE':
+            x = numpy.arange(50, 111, 1)
+            return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})

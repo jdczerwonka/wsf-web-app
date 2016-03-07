@@ -1,4 +1,4 @@
-"""
+﻿"""
 This script runs the FlaskWebProject application using a development server.
 """
 
