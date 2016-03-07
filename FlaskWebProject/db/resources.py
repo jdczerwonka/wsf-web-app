@@ -23,8 +23,8 @@ parser.add_argument('month_id', type=str)
 parser.add_argument('week_id', type=str)
 parser.add_argument('curve', type=str, default='OPT_PRICE')
 parser.add_argument('barn_size', type=int, default=2500)
-parser.add_argument('base_price', type=float)
-parser.add_argument('death_per', type=float)
+parser.add_argument('base_price', type=float, default=80)
+parser.add_argument('death_per', type=float, default=4)
 
 def CreateSession():
         engine = create_engine(DB_URI)

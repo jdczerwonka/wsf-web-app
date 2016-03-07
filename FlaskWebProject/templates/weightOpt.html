@@ -16,21 +16,21 @@
             <div class="col-sm-2"></div>
             <div class="input-group col-sm-4">
                 <div class="input-group-addon">$</div>
-                <input type="number" class="form-control" id="inpBasePrice" name="base_price" />
+                <input type="number" class="form-control" id="inpBasePrice" name="base_price" value="80.00" />
             </div>
         </div>
         <div class="form-group">
             <label for="inpBarnSize" class="control-label col-sm-6">Barn Size</label>
             <div class="col-sm-2"></div>
             <div class="input-group col-sm-4">
-                <input type="number" class="form-control" style="border-radius:4px" id="inpBarnSize" name="barn_size"/>
+                <input type="number" class="form-control" style="border-radius:4px" id="inpBarnSize" name="barn_size" value="2500"/>
             </div>
         </div>
         <div class="form-group">
             <label for="inpDeathPer" class="control-label col-sm-6">Death Percentage</label>
             <div class="col-sm-2"></div>
             <div class="input-group col-sm-4">
-                <input type="number" class="form-control" id="inpDeathPer" name="death_per"/>
+                <input type="number" class="form-control" id="inpDeathPer" name="death_per" value="4.00"/>
                 <div class="input-group-addon">%</div>
             </div>
         </div>
@@ -42,15 +42,12 @@
 </div>
 <script>
     $("#recalculate").click(function () {
-        var param = $("#frmWeightOpt").serialize();
-        generatePlot(param);
+        generatePlot();
     });
 
-    function generatePlot(param) {
+    function generatePlot() {
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
-        if (typeof param !== undefined) {
-            url = url + "?" + param;
-        }
+        url = url + "?" + $("#frmWeightOpt").serialize();
         
         $.getJSON(url).done(function (data) {
             var trace1 = {
