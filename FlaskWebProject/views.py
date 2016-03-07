@@ -7,6 +7,8 @@ from flask import render_template
 from FlaskWebProject.db.resources import *
 from FlaskWebProject import app, api
 
+API_HEADER = '/api/v1'
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -47,6 +49,6 @@ def weightOpt():
         message='Determine the optimal selling weight for a group of pigs.'
     )
 
-api.add_resource(IngredientsApi, '/ingredients', '/ingredients/<IngrStr>')
-api.add_resource(GroupsApi, '/groups', '/groups/<GroupStr>', '/groups/<GroupStr>/<GroupInfo>')
-api.add_resource(WeightOptApi, '/weightOptApi')
+api.add_resource(IngredientsApi, API_HEADER + '/ingredients', API_HEADER + '/ingredients/<IngrStr>')
+api.add_resource(GroupsApi, API_HEADER + '/groups', API_HEADER + '/groups/<GroupStr>', API_HEADER + '/groups/<GroupStr>/<GroupInfo>')
+api.add_resource(WeightOptApi, API_HEADER + '/weightOptApi')

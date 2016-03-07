@@ -129,5 +129,6 @@ class WeightOptApi(Resource):
         bm = BarnModel(w2fModel, gm, sm, StartWeight = 12.5, BarnSize = 5220, DeathLossPer = 4.37, DiscountLossPer = 2.16, WeeklyRent = 3880)
 
         x = numpy.arange(50, 111, 1)
-
         return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})
+        #x = numpy.arange(270, 305, 1)
+        #return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_rev_curve(x).tolist()})
