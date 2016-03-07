@@ -13,30 +13,60 @@
         </div>
         <div class="form-group">
             <label for="inpBasePrice" class="control-label col-sm-6">Base Price</label>
-            <div class="col-sm-2"></div>
+            <div class="col-sm-1"></div>
             <div class="input-group col-sm-4">
                 <div class="input-group-addon">$</div>
                 <input type="number" class="form-control" id="inpBasePrice" name="base_price" value="80.00" />
             </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="form-group">
+            <label for="inpRent" class="control-label col-sm-6">Rent</label>
+            <div class="col-sm-1"></div>
+            <div class="input-group col-sm-4">
+                <div class="input-group-addon">$</div>
+                <input type="number" class="form-control" id="inpRent" name="rent" value="1940" />
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="form-group">
+            <label for="inpWeeks" class="control-label col-sm-6">Weeks in Barn</label>
+            <div class="col-sm-1"></div>
+            <div class="input-group col-sm-4">
+                <input type="number" class="form-control" style="border-radius:4px" id="inpWeeks" name="weeks" value="24.5" />
+            </div>
+            <div class="col-sm-1"></div>
         </div>
         <div class="form-group">
             <label for="inpBarnSize" class="control-label col-sm-6">Barn Size</label>
-            <div class="col-sm-2"></div>
+            <div class="col-sm-1"></div>
             <div class="input-group col-sm-4">
                 <input type="number" class="form-control" style="border-radius:4px" id="inpBarnSize" name="barn_size" value="2500"/>
             </div>
+            <div class="col-sm-1"></div>
         </div>
         <div class="form-group">
             <label for="inpDeathPer" class="control-label col-sm-6">Death Percentage</label>
-            <div class="col-sm-2"></div>
+            <div class="col-sm-1"></div>
             <div class="input-group col-sm-4">
                 <input type="number" class="form-control" id="inpDeathPer" name="death_per" value="4.00"/>
                 <div class="input-group-addon">%</div>
             </div>
+            <div class="col-sm-1"></div>
         </div>
         <div class="form-group">
-            <div class="col-sm-8"></div>
+            <label for="inpDiscountPer" class="control-label col-sm-6">Discount Percentage</label>
+            <div class="col-sm-1"></div>
+            <div class="input-group col-sm-4">
+                <input type="number" class="form-control" id="inpDiscountPer" name="discount_per" value="1.00" />
+                <div class="input-group-addon">%</div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-7"></div>
             <button type="button" class="btn btn-primary col-sm-4" id="recalculate"><strong>Recalculate</strong></button>
+            <div class="col-sm-1"></div>
         </div>
     </form>
 </div>
