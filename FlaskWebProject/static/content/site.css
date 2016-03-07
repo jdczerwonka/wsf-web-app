@@ -16,6 +16,11 @@ textarea {
     max-width: 280px;
 }
 
+.form-wt-opt h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
