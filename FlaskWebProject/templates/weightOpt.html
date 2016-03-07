@@ -47,7 +47,7 @@
     });
 
     function generatePlot(param) {
-        if (param === null) { 
+        if (typeof param === undefined) { 
             param = "";
         }
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
