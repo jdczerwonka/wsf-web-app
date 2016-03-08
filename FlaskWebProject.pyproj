@@ -60,8 +60,14 @@
   <ItemGroup>
     <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.css" />
     <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.min.css" />
+    <Content Include="FlaskWebProject\static\scripts\bootstrap-fv-0.7.1.js" />
+    <Content Include="FlaskWebProject\static\scripts\bootstrap-fv-0.7.1.min.js" />
+    <Content Include="FlaskWebProject\static\content\formValidation-0.7.1.css" />
+    <Content Include="FlaskWebProject\static\content\formValidation-0.7.1.min.css" />
     <Content Include="FlaskWebProject\static\scripts\bootstrap-3.3.6.js" />
     <Content Include="FlaskWebProject\static\scripts\bootstrap-3.3.6.min.js" />
+    <Content Include="FlaskWebProject\static\scripts\formValidation-0.7.1.js" />
+    <Content Include="FlaskWebProject\static\scripts\formValidation-0.7.1.min.js" />
     <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.js" />
     <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.min.js" />
     <Content Include="FlaskWebProject\static\storage\Cargill Lean Value Matrix.csv" />
