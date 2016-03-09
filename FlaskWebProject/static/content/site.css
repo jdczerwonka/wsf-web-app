@@ -21,8 +21,17 @@ textarea {
     padding-bottom: 10px;
 }
 
+.panel-group {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.panel-group a {
+    text-decoration: none;
+}
+
 /* styles for validation helpers */
-.field-validation-error {
+/*.field-validation-error {
     color: #b94a48;
 }
 
@@ -44,4 +53,4 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
-}
+}*/

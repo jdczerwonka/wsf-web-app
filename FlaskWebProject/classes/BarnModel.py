@@ -182,14 +182,14 @@ class PigGrowthModel():
         return func 
 
 class BarnModel():
-    def __init__(self, DeathModel, PigModel, SalesModel, StartWeight = 12, BarnSize = 2500, PigSpaces = 2400, WeeklyRent = 2030, DeathLossPer = 3.25, DiscountLossPer = 0.75, ModelType = "barn"):
+    def __init__(self, DeathModel, PigModel, SalesModel, StartWeight = 12, StartNum = 2500, PigSpaces = 2400, WeeklyRent = 2030, DeathLossPer = 3.25, DiscountLossPer = 0.75, ModelType = "barn"):
         
         self.pig = PigModel
         self.sales = SalesModel
 
         self.death = Model( polynomial(DeathModel) )
         self.start_weight = StartWeight
-        self.barn_size = BarnSize
+        self.start_num = StartNum
         self.death_loss = DeathLossPer
         self.discount_loss = DiscountLossPer
         self.model_type = ModelType
@@ -273,7 +273,7 @@ class BarnModel():
 
     @property 
     def set_g_cum(self):
-        self.g_cum = Model(lambda x: self.g_total.model(x) / (x * 7 * self.barn_size))
+        self.g_cum = Model(lambda x: self.g_total.model(x) / (x * 7 * self.start_num))
 
     @property 
     def set_awfc(self):
@@ -293,7 +293,7 @@ class BarnModel():
 
     @property 
     def set_fi_cum(self):
-        self.fi_cum = Model(lambda x: self.fi_total.model(x) / (x * 7 * self.barn_size))
+        self.fi_cum = Model(lambda x: self.fi_total.model(x) / (x * 7 * self.start_num))
 
     @property 
     def set_aw_feed_cost(self):
@@ -310,7 +310,7 @@ class BarnModel():
     @property
     def adjust_death(self):
         self.set_death_total
-        self.death = Model( self.death.model * (self.death_loss / 100 * self.barn_size / self.death_total.diff(self.pig.avg_weeks_in_barn)) )
+        self.death = Model( self.death.model * (self.death_loss / 100 * self.start_num / self.death_total.diff(self.pig.avg_weeks_in_barn)) )
         self.set_death_total
         self.set_death_cum
         self.set_alive
@@ -325,7 +325,7 @@ class BarnModel():
 
     @property
     def set_alive(self):
-        self.alive = Model( self.barn_size - self.death.model.integ() )
+        self.alive = Model( self.start_num - self.death.model.integ() )
 
 class Model():
     def __init__(self, func):

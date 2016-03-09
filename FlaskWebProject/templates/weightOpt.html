@@ -11,66 +11,138 @@
         <div class="col-sm-12">
             <h2 class="text-center">Input Fields</h2>
         </div>
-        <div class="form-group">
-            <label for="inpBasePrice" class="control-label col-xs-6">Base Price</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <div class="input-group-addon">$</div>
-                <input type="text" class="form-control" id="inpBasePrice" name="base_price" value="80.00" />
+
+        <div class="panel-group col-xs-12" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Sell Attributes
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="inpBasePrice" class="control-label col-xs-6">Base Price</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon">$</div>
+                                <input type="text" class="form-control" style="border-top-right-radius: 4px; border-bottom-right-radius: 4px;" id="inpBasePrice" name="base_price" value="80.00" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpCarcassStdDev" class="control-label col-xs-6">Carcass Std Dev</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpCarcassStdDev" name="carcass_std_dev" value="18" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpYieldAvg" class="control-label col-xs-6">Yield Avg</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpYieldAvg" name="yield_avg" value="76.00" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpLeanAvg" class="control-label col-xs-6">Lean Avg</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpLeanAvg" name="lean_avg" value="54.00" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpLeanStdDev" class="control-label col-xs-6">Lean Std Dev</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpLeanStdDev" name="lean_std_dev" value="2.1" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-1"></div>
-        </div>
-        <div class="form-group">
-            <label for="inpRent" class="control-label col-xs-6">Rent</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <div class="input-group-addon">$</div>
-                <input type="text" class="form-control" id="inpRent" name="rent" value="1940" />
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Barn Attributes
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="inpRent" class="control-label col-xs-6">Rent</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon">$</div>
+                                <input type="text" class="form-control" style="border-top-right-radius: 4px; border-bottom-right-radius: 4px;" id="inpRent" name="rent" value="1940" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inpWeeks" class="control-label col-xs-6">Avg Weeks in Barn</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpWeeks" name="weeks" value="24.5" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpStartNum" class="control-label col-xs-6">Start Number</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" style="border-radius:4px" id="inpStartNum" name="start_num" value="2500" />
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpDeathPer" class="control-label col-xs-6">Death Percentage</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" id="inpDeathPer" name="death_per" value="4.00" />
+                                <div class="input-group-addon">%</div>
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inpDiscountPer" class="control-label col-xs-6">Discount Percentage</label>
+                            <div class="col-xs-1"></div>
+                            <div class="input-group col-xs-4">
+                                <input type="text" class="form-control" id="inpDiscountPer" name="discount_per" value="1.00" />
+                                <div class="input-group-addon">%</div>
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                                    
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-1"></div>
         </div>
-        <div class="form-group">
-            <label for="inpWeeks" class="control-label col-xs-6">Weeks in Barn</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" style="border-radius:4px" id="inpWeeks" name="weeks" value="24.5" />
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
-        <div class="form-group">
-            <label for="inpBarnSize" class="control-label col-xs-6">Barn Size</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" style="border-radius:4px" id="inpBarnSize" name="barn_size" value="2500"/>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
-        <div class="form-group">
-            <label for="inpDeathPer" class="control-label col-xs-6">Death Percentage</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" id="inpDeathPer" name="death_per" value="4.00"/>
-                <div class="input-group-addon">%</div>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
-        <div class="form-group">
-            <label for="inpDiscountPer" class="control-label col-xs-6">Discount Percentage</label>
-            <div class="col-xs-1"></div>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" id="inpDiscountPer" name="discount_per" value="1.00" />
-                <div class="input-group-addon">%</div>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
+        
         <div class="form-group">
             <div class="col-xs-7"></div>
             <button type="button" class="btn btn-primary col-xs-4" id="recalculate"><strong>Recalculate</strong></button>
             <div class="col-xs-1"></div>
         </div>
-    </form>
+</form>
 </div>
 <script>
+    $(".collapse").collapse();
     $(document).ready(function () {
         $("#frmWeightOpt").formValidation({
             framework: "bootstrap",
@@ -88,6 +160,70 @@
                             min: 0,
                             max: 200,
                             message: "Base Price must be between %s and %s"
+                        }
+                    }
+                },
+                carcass_std_dev: {
+                    validators: {
+                        notEmpty: {
+                            message: "Carcass Std Dev is required"
+                        },
+                        numeric: {
+                            message: "Carcass Std Dev must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 30,
+                            message: "Carcass Std Dev must be between %s and %s"
+                        }
+                    }
+                },
+                yield_avg: {
+                    validators: {
+                        notEmpty: {
+                            message: "Yield Avg is required"
+                        },
+                        numeric: {
+                            message: "Yield Avg must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 60,
+                            max: 90,
+                            message: "Yield Avg must be between %s and %s"
+                        }
+                    }
+                },
+                lean_avg: {
+                    validators: {
+                        notEmpty: {
+                            message: "Lean Avg is required"
+                        },
+                        numeric: {
+                            message: "Lean Avg must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 25,
+                            max: 85,
+                            message: "Lean Avg must be between %s and %s"
+                        }
+                    }
+                },
+                lean_std_dev: {
+                    validators: {
+                        notEmpty: {
+                            message: "Lean Std Dev is required"
+                        },
+                        numeric: {
+                            message: "Lean Std Dev must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 4,
+                            message: "Lean Std Dev must be between %s and %s"
                         }
                     }
                 },
@@ -123,7 +259,7 @@
                         }
                     }
                 },
-                barn_size: {
+                start_num: {
                     validators: {
                             notEmpty: {
                                 message: "Barn Size is required"
