@@ -60,6 +60,7 @@
   <ItemGroup>
     <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.css" />
     <Content Include="FlaskWebProject\static\content\bootstrap-3.3.6.min.css" />
+    <Content Include="FlaskWebProject\static\content\mysite.css" />
     <Content Include="FlaskWebProject\static\content\site.css" />
     <Content Include="FlaskWebProject\static\scripts\bootstrap-fv-0.7.1.js" />
     <Content Include="FlaskWebProject\static\scripts\bootstrap-fv-0.7.1.min.js" />
