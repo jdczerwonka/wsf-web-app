@@ -584,8 +584,7 @@
     function generatePlot() {
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
         url = url + "?" + $("#frmWeightOpt").serialize() + "&" + $("#frmFeed").serialize() + "&" + $("#frmModelAdj").serialize();
-        console.log($("#frmModelAdj").serialize());
-        console.log(url);
+
         $.getJSON(url).done(function (data) {
             var d3 = Plotly.d3;
 

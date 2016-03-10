@@ -37,7 +37,7 @@ textarea {
 }
 
 #frmFeed .has-feedback .form-control,
-#frmModelAdjust .has-feedback .form-control {
+#frmModelAdj .has-feedback .form-control {
     padding-right: 12px;
     margin: 0 auto;
 }
