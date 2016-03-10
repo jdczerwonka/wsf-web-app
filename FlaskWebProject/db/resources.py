@@ -35,6 +35,8 @@ parser.add_argument('lean_std_dev', type=float, default=2.1)
 parser.add_argument('yield_avg', type=float, default=76)
 parser.add_argument('feed_pr', action='append')
 parser.add_argument('feed_wt', action='append')
+parser.add_argument('model_g_adj', action='append')
+parser.add_argument('model_fc_adj', action='append')
 
 def CreateSession():
         engine = create_engine(DB_URI)
@@ -141,10 +143,19 @@ class WeightOptApi(Resource):
         args['feed_wt'].insert(0, args['start_wt'])
         args['feed_wt'] = [float(x) for x in args['feed_wt']]
 
+        print args['model_g_adj']
+        print args['model_fc_adj']
+
+        args['model_g_adj'] = [float(x) for x in args['model_g_adj']]
+        args['model_fc_adj'] = [float(x) for x in args['model_fc_adj']]
+
+        print args['model_g_adj']
+        print args['model_fc_adj']
+
         sm = SalesModel(CarcassAvg = 218, CarcassStdDev = args['carcass_std_dev'], LeanAvg =args['lean_avg'],
                 LeanStdDev = args['lean_std_dev'], YieldAvg = args['yield_avg'], BasePrice = args['base_price'])
 
-        gm = PigGrowthModel(awgModel, awfcModel, args['weeks'], awgAdjust, awfcAdjust, PriceCutoff = args['feed_pr'], WtCutoff = numpy.array(args['feed_wt']), StartWeight = args['start_wt'])
+        gm = PigGrowthModel(awgModel, awfcModel, AvgWeeksInBarn = args['weeks'], awgAdjust = args['model_g_adj'], awfcAdjust = args['model_fc_adj'], PriceCutoff = args['feed_pr'], WtCutoff = numpy.array(args['feed_wt']), StartWeight = args['start_wt'])
 
         bm = BarnModel(w2fModel, gm, sm, StartNum = args['start_num'], DeathLossPer = args['death_per'], DiscountLossPer = args['discount_per'], WeeklyRent = args['rent'])
 
