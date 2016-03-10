@@ -94,7 +94,7 @@ class PigGrowthModel():
 
         self.awfc = Model( polynomial(awfcModel) )
         if awfcAdjust is not None:
-            self.shift_awfc(awfcAdjust[0], awfcAdjust[1], awfcAdjust[3])
+            self.shift_awfc(awfcAdjust[0], awfcAdjust[1], awfcAdjust[2])
 
         self.set_fc_cum
         self.set_awfi
@@ -182,13 +182,12 @@ class PigGrowthModel():
         return func 
 
 class BarnModel():
-    def __init__(self, DeathModel, PigModel, SalesModel, StartWeight = 12, StartNum = 2500, PigSpaces = 2400, WeeklyRent = 2030, DeathLossPer = 3.25, DiscountLossPer = 0.75, ModelType = "barn"):
+    def __init__(self, DeathModel, PigModel, SalesModel, StartNum = 2500, PigSpaces = 2400, WeeklyRent = 2030, DeathLossPer = 3.25, DiscountLossPer = 0.75, ModelType = "barn"):
         
         self.pig = PigModel
         self.sales = SalesModel
 
         self.death = Model( polynomial(DeathModel) )
-        self.start_weight = StartWeight
         self.start_num = StartNum
         self.death_loss = DeathLossPer
         self.discount_loss = DiscountLossPer
@@ -245,7 +244,7 @@ class BarnModel():
 
     @property 
     def calc_sales(self):
-        wk = self.pig.awg.roots(self.sales.live_avg - self.start_weight)
+        wk = self.pig.awg.roots(self.sales.live_avg - self.pig.start_weight)
 
         self.revenue_total = self.sales.revenue_avg * self.alive.model(wk)
         self.feed_total = self.feed_cost_cum.model(wk)
@@ -258,8 +257,8 @@ class BarnModel():
 
     def calc_feed_cost_diff(self, lb, ub, data_type = "wk"):
         if data_type == "wt":
-            lb = self.pig.awg.calc_week(lb - self.start_weight)
-            ub = self.pig.awg.calc_week(ub - self.start_weight)
+            lb = self.pig.awg.calc_week(lb - self.pig.start_weight)
+            ub = self.pig.awg.calc_week(ub - self.pig.start_weight)
 
         return self.aw_feed_cost.integrate(lb, ub)
 

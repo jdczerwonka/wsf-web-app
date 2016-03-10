@@ -137,12 +137,16 @@ class WeightOptApi(Resource):
 				        0.09077630, 0.08552250, 0.07965624, 0.07812813, 
 				        0.07665118, 0.07570529, 0.09360718, 0.09719425]
 
+        args['feed_pr'] = [float(x) for x in args['feed_pr']]
+        args['feed_wt'].insert(0, args['start_wt'])
+        args['feed_wt'] = [float(x) for x in args['feed_wt']]
+
         sm = SalesModel(CarcassAvg = 218, CarcassStdDev = args['carcass_std_dev'], LeanAvg =args['lean_avg'],
                 LeanStdDev = args['lean_std_dev'], YieldAvg = args['yield_avg'], BasePrice = args['base_price'])
 
-        gm = PigGrowthModel(awgModel, awfcModel, AvgWeeksInBarn = args['weeks'], awgAdjust = awgAdjust, awfcAdjust = awfcAdjust, PriceCutoff = args['feed_pr'], WtCutoff = numpy.array(args['feed_wt']))
+        gm = PigGrowthModel(awgModel, awfcModel, args['weeks'], awgAdjust, awfcAdjust, PriceCutoff = args['feed_pr'], WtCutoff = numpy.array(args['feed_wt']), StartWeight = args['start_wt'])
 
-        bm = BarnModel(w2fModel, gm, sm, StartWeight = args['start_wt'], StartNum = args['start_num'], DeathLossPer = args['death_per'], DiscountLossPer = args['discount_per'], WeeklyRent = args['rent'])
+        bm = BarnModel(w2fModel, gm, sm, StartNum = args['start_num'], DeathLossPer = args['death_per'], DiscountLossPer = args['discount_per'], WeeklyRent = args['rent'])
 
         if args['curve'].upper() == 'OPT_PRICE':
             x = numpy.arange(250, 301, 1)
