@@ -75,7 +75,6 @@
     <Content Include="requirements.txt" />
     <Content Include="FlaskWebProject\static\content\bootstrap.css" />
     <Content Include="FlaskWebProject\static\content\bootstrap.min.css" />
-    <Content Include="FlaskWebProject\static\content\site.css" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.ttf" />
