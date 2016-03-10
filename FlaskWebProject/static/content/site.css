@@ -1,0 +1,62 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.form-wt-opt h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.panel-group {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.panel-group a {
+    text-decoration: none;
+}
+
+.table > tbody > tr > th,
+.table > thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#frmFeed .has-feedback .form-control,
+#frmModelAdj .has-feedback .form-control {
+    padding-right: 12px;
+    margin: 0 auto;
+}
+
+.inp-feed-pr {
+    width: 105px;
+    text-align: center;
+}
+
+.inp-feed-wt {
+    text-align: center;
+}
+
+.inp-model-g-adj {
+    width: 70px;
+    text-align: center;
+}
+
+.inp-model-fc-adj {
+    width: 70px;
+    text-align: center;
+}
