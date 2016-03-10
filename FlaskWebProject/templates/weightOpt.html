@@ -502,7 +502,6 @@
                 HEIGHT_IN_PERCENT_OF_PARENT = 100;
 
             var gd3 = d3.select('#myDiv')
-                .append('div')
                 .style({
                     width: WIDTH_IN_PERCENT_OF_PARENT + '%',
                     'margin-left': (100 - WIDTH_IN_PERCENT_OF_PARENT) / 2 + '%',
@@ -531,8 +530,7 @@
                 }
             };
 
-            //Plotly.newPlot('myDiv', plot, layout);
-            Plotly.plot(gd, plot, layout);
+            Plotly.newPlot(gd, plot, layout);
 
             window.onresize = function () {
                 Plotly.Plots.resize(gd)
