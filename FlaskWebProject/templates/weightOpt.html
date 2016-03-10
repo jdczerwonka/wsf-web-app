@@ -500,16 +500,16 @@
                 feed_wt: {
                     validators: {
                         notEmpty: {
-                            message: "Max Wt is required"
+                            message: "Start Weight is required"
                         },
                         numeric: {
-                            message: "Max Wt must be a number",
+                            message: "Start Weight must be a number",
                             decimalSeparator: "."
                         },
                         between: {
                             min: 0,
                             max: 1000,
-                            message: "Max Wt must be between %s and %s"
+                            message: "Start Weight must be between %s and %s"
                         }
                     }
                 }
@@ -569,7 +569,7 @@
         $(this).parent().removeClass("has-success");
     });
 
-    $("#frmModelAdjust input").blur(function () {
+    $("#frmModelAdj input").blur(function () {
         $(this).parent().removeClass("has-success");
     });
 
