@@ -118,6 +118,15 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="inpStartWt" class="control-label col-xs-6">Start Weight</label>
+                                <div class="col-xs-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" style="border-radius:4px" id="inpStartWt" name="start_wt" value="12" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="inpDeathPer" class="control-label col-xs-6">Death Percentage</label>
                                 <div class="col-xs-5">
                                     <div class="input-group">
@@ -158,64 +167,64 @@
                                     <tr>
                                         <th class="text-center">Phase</th>
                                         <th class="text-center">Price ($/lb)</th>
-                                        <th class="text-center">Live Wt Max (lbs)</th>
+                                        <th class="text-center">Start Weight (lbs)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th>N1</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.29438071" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="20" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.29438071" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" id="N1_wt" name="feed_wt" value="12" disabled/></td>
                                     </tr>
                                     <tr>
                                         <th>N2</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.18980649" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="30" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.18980649" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="20" /></td>
                                     </tr>
                                     <tr>
                                         <th>N3</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.11205248" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="50" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.11205248" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="30" /></td>
                                     </tr>
                                     <tr>
                                         <th>F1</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.09077630" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="80" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.09077630" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="50" /></td>
                                     </tr>
                                     <tr>
                                         <th>F2</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.08552250" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="120" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.08552250" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="80" /></td>
                                     </tr>
                                     <tr>
                                         <th>F3</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.07965624" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="160" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.07965624" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="120" /></td>
                                     </tr>
                                     <tr>
                                         <th>F4</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.07812813" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="200" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.07812813" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="160" /></td>
                                     </tr>
                                     <tr>
                                         <th>F5</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.07665118" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="225" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.07665118" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="200" /></td>
                                     </tr>
                                     <tr>
                                         <th>F6</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.07570529" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="245" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.07570529" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="225" /></td>
                                     </tr>
                                     <tr>
                                         <th>F7</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.09360718" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="265" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.09360718" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="245" /></td>
                                     </tr>
                                     <tr>
                                         <th>F8</th>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="price[]" value="0.09719425" /></td>
-                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="weight[]" value="999" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-price" name="feed_pr" value="0.09719425" /></td>
+                                        <td class="has-feedback"><input type="text" class="form-control inp-wt" name="feed_wt" value="265" /></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -368,6 +377,22 @@
                         }
                     }
                 },
+                start_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Barn Size is required"
+                        },
+                        numeric: {
+                            message: "Barn Size must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 5,
+                            max: 100,
+                            message: "Barn Size must be between %s and %s"
+                        }
+                    }
+                },
                 death_per: {
                     validators: {
                         notEmpty: {
@@ -414,7 +439,7 @@
                 selector: 'td'
             },
             fields: {
-                'price[]': {
+                feed_pr: {
                     validators: {
                         notEmpty: {
                             message: "Price is required"
@@ -430,7 +455,7 @@
                         }
                     }
                 },
-                'weight[]': {
+                feed_wt: {
                     validators: {
                         notEmpty: {
                             message: "Max Wt is required"
@@ -451,11 +476,15 @@
     });
 
     $("#frmWeightOpt input").blur(function () {
-        $(this).parent().parent().parent().removeClass("has-success")
+        $(this).parent().parent().parent().removeClass("has-success");
     });
 
     $("#frmFeed input").blur(function () {
-        $(this).parent().removeClass("has-success")
+        $(this).parent().removeClass("has-success");
+    });
+
+    $("#inpStartWt").change(function () {
+        $("#N1_wt").val($("#inpStartWt").val());
     });
 
     $("#recalculate").click(function () {
@@ -465,6 +494,8 @@
     function generatePlot() {
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
         url = url + "?" + $("#frmWeightOpt").serialize();
+        console.log($("#frmWeightOpt").serialize());
+        console.log($("#frmFeed").serialize());
         
         $.getJSON(url).done(function (data) {
             var d3 = Plotly.d3;

@@ -87,14 +87,14 @@ class PigGrowthModel():
 
         self.awg = Model( polynomial(awgModel) )
         if awgAdjust is not None:
-            self.shift_awg(awgAdjust[0], awgAdjust[1], self.avg_weeks_in_barn)
+            self.shift_awg(awgAdjust[0], awgAdjust[1], awgAdjust[2])
 
         self.set_g_total
         self.set_g_cum
 
         self.awfc = Model( polynomial(awfcModel) )
         if awfcAdjust is not None:
-            self.shift_awfc(awfcAdjust[0], awfcAdjust[1], self.avg_weeks_in_barn)
+            self.shift_awfc(awfcAdjust[0], awfcAdjust[1], awfcAdjust[3])
 
         self.set_fc_cum
         self.set_awfi
