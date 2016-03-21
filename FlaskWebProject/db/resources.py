@@ -9,8 +9,6 @@ from datetime import date
 import numpy
 import simplejson
 
-polynomial = numpy.polynomial.polynomial.Polynomial
-
 SERVER = "wsf-db-server.database.windows.net"
 USERNAME = "jdczerwonka@wsf-db-server"
 PASSWORD = "U2,6d2s5"
@@ -132,7 +130,7 @@ class WeightOptApi(Resource):
         awfiModel = [0.90582088, 1.59691733, 0.24820408, -0.01655183, 0.00028117]
         awfcModel = [1.1, 0.10728206]
         awgAdjust = [273, 0, 24.5]
-        awfcAdjust = [2.65, 24.5]
+        awfcAdjust = [2.65, 0, 24.5]
 
         feed_cost_br = [2.62141065, 4.12473822, 
 				        6.29822741, 8.85710311, 11.78041278, 14.48593525,
@@ -167,15 +165,15 @@ class WeightOptApi(Resource):
 
         feedCostModel = PiecePolynomial(feed_cost_poly, feed_cost_br, args['feed_wt'])
 
-        death_poly = [polynomial(w2fDeath1), polynomial(w2fDeath2), polynomial(w2fDeath3), polynomial(w2fDeath4), polynomial(w2fDeath5), polynomial(w2fDeath6)]
+        death_poly = [polynomial(0), polynomial(w2fDeath1), polynomial(w2fDeath2), polynomial(w2fDeath3), polynomial(w2fDeath4), polynomial(w2fDeath5)]
         death_br = w2fDeath_br
 
         deathModel = PiecePolynomial(death_poly, death_br)
 
-        rentModel = PiecePolynomial([polynomial(0), polynomial(2030)], [0.])
+        rentModel = PiecePolynomial([polynomial(0), polynomial(args['rent'])], [0.])
 
-        sm = SalesModel(CarcassAvg = 218, CarcassStdDev = args['carcass_std_dev'], LeanAvg =args['lean_avg'], LeanStdDev = args['lean_std_dev'], YieldAvg = args['yield_avg'], BasePrice = args['base_price'])
-        gm = PigGrowthModel(awgModel, awfcModel, feedCostModel, args['model_g_adj'], args['model_fc_adj'], StartWeight = args['start_wt'])
+        sm = SalesModel(CarcassAvg = 218, CarcassStdDev = args['carcass_std_dev'], LeanAvg = args['lean_avg'], LeanStdDev = args['lean_std_dev'], YieldAvg = args['yield_avg'], BasePrice = args['base_price'])
+        gm = PigGrowthModel(awgModel, awfcModel, feedCostModel, args['model_g_adj'], args['model_fc_adj'], args['start_wt'])
         bm = BarnModel(deathModel, rentModel, gm, sm, StartNum = args['start_num'], DeathLossPer = args['death_per'], DiscountLossPer = args['discount_per'], DiscountPricePer = 50, AvgWeeksInBarn = args['weeks'])
 
         if args['curve'].upper() == 'OPT_PRICE':

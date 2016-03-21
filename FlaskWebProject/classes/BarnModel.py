@@ -1,6 +1,7 @@
 ﻿CARGILL_WB = "FlaskWebProject/static/storage/Cargill Lean Value Matrix.csv"
 WT_CUTOFF_DEFAULT = [50, 80, 120, 160, 200, 225, 245, 265]
 
+import operator
 import math
 import numpy
 import pandas
@@ -556,5 +557,3 @@ class PiecePolynomial():
                 roots = numpy.append(roots, root)
 
         return roots
-
-
