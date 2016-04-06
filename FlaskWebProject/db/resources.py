@@ -1,10 +1,13 @@
 ﻿from flask_restful import Resource, reqparse, inputs
 from flask import jsonify
+
 from sqlalchemy import func, create_engine
 from sqlalchemy.orm import sessionmaker
+
 from FlaskWebProject.db.models import *
 from FlaskWebProject.db.schemas import *
 from FlaskWebProject.classes.BarnModel import *
+
 from datetime import date
 import numpy
 import simplejson
@@ -52,10 +55,10 @@ class IngredientsApi(Resource):
         a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
 
         if args['month_id'] is not None:
-            a_query = a_query.join(Diets).filter(Diets.delivery_month == args['month_id'])
+            a_query = a_query.filter(Ingredients.delivery_month == args['month_id'])
             print args['month_id']
         elif args['week_id'] is not None:
-            a_query = a_query.join(Diets).filter(Diets.delivery_week == args['week_id'])
+            a_query = a_query.filter(Ingredients.delivery_week == args['week_id'])
             print args['week_id']
         elif args['start_date'] is None and args['end_date'] is None:
             pass
@@ -66,7 +69,7 @@ class IngredientsApi(Resource):
             if args['end_date'] is None:
                 args['end_date'] = date.today()
 
-            a_query = a_query.join(Diets).filter(Diets.delivery_date.between(args['start_date'], args['end_date']))
+            a_query = a_query.filter(Ingredients.delivery_date.between(args['start_date'], args['end_date']))
         
         if IngrStr.upper() == 'ALL':
             ingredients = a_query.group_by(Ingredients.ingredient).order_by(Ingredients.ingredient.asc()).all()
@@ -82,35 +85,84 @@ class GroupsApi(Resource):
         session = CreateSession()
         move_bool = False
 
-        if GroupInfo is None:
-            a_query = session.query(Groups)
-            table = Groups
-        elif GroupInfo.upper() == 'FEED':
-            a_query = session.query(func.sum(Diets.quantity).label('quantity'), func.sum(Diets.cost).label('cost'), Diets.group_num).group_by(Diets.group_num)
-            table = Diets
-        elif GroupInfo.upper() == 'DEATHS':
-            a_query = session.query(func.sum(Deaths.quantity).label('death_num'), func.sum(Deaths.weight).label('weight'), Deaths.group_num).group_by(Deaths.group_num)
-            table = Deaths
-        elif GroupInfo.upper() in ['ADJ', 'BGM', 'CON', 'DIS', 'DOT', 'GA', 'GS', 'NV', 'PWP', 'SA', 'SMS', 'SR', 'ST', 'TFP', 'WPS', 'YD']:
-            a_query = session.query(func.abs(func.sum(Movements.quantity)).label('quantity'), func.abs(func.sum(Movements.weight)).label('weight'), func.abs(func.sum(Movements.cost)).label('cost'), Movements.location_id.label('group_num'))
-            a_query = a_query.group_by(Movements.location_id).filter( ((Movements.location_type == 'group') | (Movements.location_type == 'sow_unit')) & (Movements.event_code == GroupInfo))
-            table = Movements
-            move_bool = True
+        a_query = session.query(Groups)
+        a_query = self.FilterGroup(Groups, a_query, GroupStr = GroupStr)
+        group_results = a_query.all()
 
+        schema_group = GroupsSchema(many=True)
+        result_group = schema_group.dump(group_results)
+
+        if GroupInfo is not None:
+            if GroupInfo.upper() == 'INGREDIENTS':
+                a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
+                a_query = a_query.group_by(Ingredients.ingredient).order_by(Ingredients.ingredient.asc())
+
+                a_query = self.FilterGroup(Ingredients, a_query, GroupStr = GroupStr)
+                query_results = a_query.all()
+
+                schema_other = IngredientsSchema(many=True)
+                result_other = schema_other.dump(query_results)
+                result_group.data[0][u'ingredients'] = result_other.data
+
+            elif GroupInfo.upper() == 'DIETS':
+                a_query = session.query(Diets.diet, func.sum(Diets.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
+                a_query = a_query.group_by(Diets.diet).order_by(Diets.diet.asc())
+
+                a_query = self.FilterGroup(Diets, a_query, GroupStr = GroupStr)
+                query_results = a_query.all()
+
+                schema_other = DietsSchema(many=True)
+                result_other = schema_other.dump(query_results)
+                result_group.data[0][u'diets'] = result_other.data
+
+            elif GroupInfo.upper() == 'MOVEMENTS':
+                a_query = session.query(Movements.event_category_from.label('category'), func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'))
+                a_query = a_query.group_by(Movements.event_category_from).order_by(Movements.event_category_from)
+
+                a_query = self.FilterGroup(Movements, a_query, GroupStr = GroupStr, move_bool=True)
+                query_results = a_query.all()
+
+                schema_other = MovementsSchema(many=True)
+                result_other = schema_other.dump(query_results)
+                result_group.data[0][u'movements'] = result_other.data
+
+            elif GroupInfo.upper() == 'SALES':
+                a_query = session.query(Sales.group_num, func.sum(Sales.quantity).label('quantity'), func.avg(Sales.avg_live_wt).label('avg_live_wt'), func.avg(Sales.avg_carcass_wt).label('avg_carcass_wt'), func.avg(Sales.base_price_cwt).label('avg_base_price_cwt'), func.avg(Sales.vob_cwt).label('avg_vob_cwt'), func.avg(Sales.yield_per).label('avg_yield_per'), func.avg(Sales.lean_per).label('avg_lean_per'))
+                a_query = a_query.group_by(Sales.group_num).order_by(Sales.group_num)
+
+                a_query = self.FilterGroup(Sales, a_query, GroupStr = GroupStr)
+                query_results = a_query.all()
+
+                schema_other = SalesSchema(many=True)
+                result_other = schema_other.dump(query_results)
+                result_group.data[0][u'sales'] = result_other.data
+
+            elif GroupInfo.upper() in ['DEATHS', 'DEATH', 'REJECTS', 'EUTHANIZE', 'MARKET SALE', 'SUB-STANDARD SALE']:
+                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.entity_from.label('group_num'))
+                a_query = a_query.group_by(Movements.entity_from).filter(Movements.event_category_from == GroupInfo)
+                table = Movements
+                move_bool = True
+            elif GroupInfo.upper() in ['ADJ', 'BGM', 'CON', 'DIS', 'DOT', 'GA', 'GS', 'NV', 'PWP', 'SA', 'SMS', 'SR', 'ST', 'TFP', 'WPS', 'YD']:
+                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.entity_from.label('group_num'))
+                a_query = a_query.group_by(Movements.entity_from).filter(Movements.event_code_from == GroupInfo)
+                table = Movements
+                move_bool = True
+
+        return jsonify({'groups' : result_group.data})
+
+    def FilterGroup(self, table, query, GroupStr, move_bool = False):
         if move_bool:
             if GroupStr.upper() == 'ALL':
-                groups = a_query.order_by(table.location_id.desc()).all()
+                a_query = query.order_by(table.entity_from.desc())
             else:
-                groups = a_query.filter(table.location_id == GroupStr).all()        
+                a_query = query.filter(table.entity_from == GroupStr)        
         else:
             if GroupStr.upper() == 'ALL':
-                groups = a_query.order_by(table.group_num.desc()).all()
+                a_query = query.order_by(table.group_num.desc())
             else:
-                groups = a_query.filter(table.group_num == GroupStr).all()
+                a_query = query.filter(table.group_num == GroupStr)
 
-        schema = GroupsSchema(many=True)
-        result = schema.dump(groups)
-        return jsonify({'groups' : result.data})
+        return a_query
 
 class WeightOptApi(Resource):
     def get(self):
