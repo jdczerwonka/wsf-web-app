@@ -52,7 +52,7 @@ class IngredientsApi(Resource):
         session = CreateSession()
         args = parser.parse_args()
 
-        a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
+        a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.weight).label('weight'), func.sum(Ingredients.cost).label('cost'))
 
         if args['month_id'] is not None:
             a_query = a_query.filter(Ingredients.delivery_month == args['month_id'])
@@ -64,7 +64,7 @@ class IngredientsApi(Resource):
             pass
         else:
             if args['start_date'] is None:
-                args['start_date'] = date(2014,9,1)
+                args['start_date'] = date(2013,1,1)
 
             if args['end_date'] is None:
                 args['end_date'] = date.today()
@@ -83,7 +83,6 @@ class IngredientsApi(Resource):
 class GroupsApi(Resource):
     def get(self, GroupInfo = None, GroupStr = 'ALL'):
         session = CreateSession()
-        move_bool = False
 
         a_query = session.query(Groups)
         a_query = self.FilterGroup(Groups, a_query, GroupStr = GroupStr)
@@ -94,7 +93,7 @@ class GroupsApi(Resource):
 
         if GroupInfo is not None:
             if GroupInfo.upper() == 'INGREDIENTS':
-                a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
+                a_query = session.query(Ingredients.ingredient, func.sum(Ingredients.weight).label('weight'), func.sum(Ingredients.cost).label('cost'))
                 a_query = a_query.group_by(Ingredients.ingredient).order_by(Ingredients.ingredient.asc())
 
                 a_query = self.FilterGroup(Ingredients, a_query, GroupStr = GroupStr)
@@ -105,19 +104,19 @@ class GroupsApi(Resource):
                 result_group.data[0][u'ingredients'] = result_other.data
 
             elif GroupInfo.upper() == 'DIETS':
-                a_query = session.query(Diets.diet, func.sum(Diets.quantity).label('quantity'), func.sum(Ingredients.cost).label('cost'))
-                a_query = a_query.group_by(Diets.diet).order_by(Diets.diet.asc())
+                a_query = session.query(Ingredients.diet, func.sum(Ingredients.weight).label('weight'), func.sum(Ingredients.cost).label('cost'))
+                a_query = a_query.group_by(Ingredients.diet).order_by(Ingredients.diet.asc())
 
-                a_query = self.FilterGroup(Diets, a_query, GroupStr = GroupStr)
+                a_query = self.FilterGroup(Ingredients, a_query, GroupStr = GroupStr)
                 query_results = a_query.all()
 
-                schema_other = DietsSchema(many=True)
+                schema_other = IngredientsSchema(many=True)
                 result_other = schema_other.dump(query_results)
                 result_group.data[0][u'diets'] = result_other.data
 
             elif GroupInfo.upper() == 'MOVEMENTS':
-                a_query = session.query(Movements.event_category_from.label('category'), func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'))
-                a_query = a_query.group_by(Movements.event_category_from).order_by(Movements.event_category_from)
+                a_query = session.query(Movements.event_category.label('category'), func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'))
+                a_query = a_query.group_by(Movements.event_category).order_by(Movements.event_category)
 
                 a_query = self.FilterGroup(Movements, a_query, GroupStr = GroupStr, move_bool=True)
                 query_results = a_query.all()
@@ -127,7 +126,7 @@ class GroupsApi(Resource):
                 result_group.data[0][u'movements'] = result_other.data
 
             elif GroupInfo.upper() == 'SALES':
-                a_query = session.query(Sales.group_num, func.sum(Sales.quantity).label('quantity'), func.avg(Sales.avg_live_wt).label('avg_live_wt'), func.avg(Sales.avg_carcass_wt).label('avg_carcass_wt'), func.avg(Sales.base_price_cwt).label('avg_base_price_cwt'), func.avg(Sales.vob_cwt).label('avg_vob_cwt'), func.avg(Sales.yield_per).label('avg_yield_per'), func.avg(Sales.lean_per).label('avg_lean_per'))
+                a_query = session.query(Sales.group_num, func.sum(Sales.quantity).label('quantity'), func.avg(Sales.avg_live_wt).label('avg_live_wt'), func.avg(Sales.avg_carcass_wt).label('avg_carcass_wt'), func.avg(Sales.base_price_cwt).label('avg_base_price_cwt'), func.avg(Sales.vob_cwt).label('avg_vob_cwt'), func.avg(Sales.value_cwt).label('avg_value_cwt'), func.avg(Sales.yield_per).label('avg_yield_per'), func.avg(Sales.lean_per).label('avg_lean_per'))
                 a_query = a_query.group_by(Sales.group_num).order_by(Sales.group_num)
 
                 a_query = self.FilterGroup(Sales, a_query, GroupStr = GroupStr)
@@ -138,29 +137,20 @@ class GroupsApi(Resource):
                 result_group.data[0][u'sales'] = result_other.data
 
             elif GroupInfo.upper() in ['DEATHS', 'DEATH', 'REJECTS', 'EUTHANIZE', 'MARKET SALE', 'SUB-STANDARD SALE']:
-                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.entity_from.label('group_num'))
-                a_query = a_query.group_by(Movements.entity_from).filter(Movements.event_category_from == GroupInfo)
-                table = Movements
-                move_bool = True
+                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.group_num)
+                a_query = a_query.group_by(Movements.group_num).filter(Movements.event_category == GroupInfo)
+
             elif GroupInfo.upper() in ['ADJ', 'BGM', 'CON', 'DIS', 'DOT', 'GA', 'GS', 'NV', 'PWP', 'SA', 'SMS', 'SR', 'ST', 'TFP', 'WPS', 'YD']:
-                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.entity_from.label('group_num'))
-                a_query = a_query.group_by(Movements.entity_from).filter(Movements.event_code_from == GroupInfo)
-                table = Movements
-                move_bool = True
+                a_query = session.query(func.sum(Movements.quantity).label('quantity'), func.sum(Movements.weight).label('weight'), func.sum(Movements.cost).label('cost'), Movements.group_num)
+                a_query = a_query.group_by(Movements.entity).filter(Movements.event_code == GroupInfo)
 
         return jsonify({'groups' : result_group.data})
 
     def FilterGroup(self, table, query, GroupStr, move_bool = False):
-        if move_bool:
-            if GroupStr.upper() == 'ALL':
-                a_query = query.order_by(table.entity_from.desc())
-            else:
-                a_query = query.filter(table.entity_from == GroupStr)        
+        if GroupStr.upper() == 'ALL':
+            a_query = query.order_by(table.group_num.desc())
         else:
-            if GroupStr.upper() == 'ALL':
-                a_query = query.order_by(table.group_num.desc())
-            else:
-                a_query = query.filter(table.group_num == GroupStr)
+            a_query = query.filter(table.group_num == GroupStr)
 
         return a_query
 

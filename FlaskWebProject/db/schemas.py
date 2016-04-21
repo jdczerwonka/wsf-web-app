@@ -1,13 +1,9 @@
 ﻿from marshmallow import Schema, fields
 
-class DietsSchema(Schema):
-    diet = fields.Str()
-    quantity = fields.Decimal(2)
-    cost = fields.Decimal(2)
-
 class IngredientsSchema(Schema):
+    diet = fields.Str()
     ingredient = fields.Str()
-    quantity = fields.Decimal(2)
+    weight = fields.Decimal(2)
     cost = fields.Decimal(2)
 
 class MovementsSchema(Schema):
@@ -23,6 +19,7 @@ class SalesSchema(Schema):
     avg_carcass_wt = fields.Decimal(2)
     avg_base_price_cwt = fields.Decimal(2)
     avg_vob_cwt = fields.Decimal(2)
+    avg_value_cwt = fields.Decimal(2)
     avg_yield_per = fields.Decimal(2)
     avg_lean_per = fields.Decimal(2)
 
@@ -36,4 +33,6 @@ class GroupsSchema(Schema):
     open_date = fields.Date()
     close_date = fields.Date()
     ingredients = fields.Nested(IngredientsSchema)
+    diets = fields.Nested(IngredientsSchema)
     movements = fields.Nested(MovementsSchema)
+    sales = fields.Nested(SalesSchema)
