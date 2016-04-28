@@ -1,4 +1,5 @@
-﻿from flask_restful import Resource, reqparse, inputs
+﻿from __future__ import division
+from flask_restful import Resource, reqparse, inputs
 from flask import jsonify
 
 from sqlalchemy import func, create_engine
@@ -11,6 +12,7 @@ from FlaskWebProject.classes.BarnModel import *
 from datetime import date
 import numpy
 import simplejson
+import json
 
 SERVER = "wsf-db-server.database.windows.net"
 USERNAME = "jdczerwonka@wsf-db-server"
@@ -18,6 +20,43 @@ PASSWORD = "U2,6d2s5"
 DATABASE = "DietIngredientDB"
 
 DB_URI = 'mssql+pyodbc://' + USERNAME + ':' + PASSWORD + '@' + SERVER + '/' + DATABASE + '?driver=SQL+Server+Native+Client+11.0'
+
+w2fDeath1 = [0]
+w2fDeath2 = [-0.2500, 23.9464, -4.30357143]
+w2fDeath3 = [11]
+w2fDeath4 = [-526.6290 + 11, 66.8357, -2.03571429]
+w2fDeath5 = [-725.9390 + 11, 64.3674, -1.35984848]
+w2fDeath6 = [0]
+
+w2fDeath_br = [0, 5, 13.1, 19.1, 27]
+
+finModel = [0, 210.431209, -65.244076, 9.294793, -0.678313, 0.024900, -0.000365]
+awgModel = [0.43503557, 2.16250341, -0.09743488, 0.00122924]
+awfiModel = [0.90582088, 1.59691733, 0.24820408, -0.01655183, 0.00028117]
+awfcModel = [1.1, 0.10728206]
+awgAdjust = [273, 0, 24.5]
+awfcAdjust = [2.65, 0, 24.5]
+
+feed_cost_br = [2.62141065, 4.12473822, 
+				6.29822741, 8.85710311, 11.78041278, 14.48593525,
+				17.1341315, 17.63894897, 18.8702043, 20.1224158]
+
+feed_cost_br_wt = [ 20., 30.,
+					50., 80., 120., 160.,
+            		200., 225., 245., 265.]
+
+priceCutoff = [	0.29438071, 0.18980649, 0.11205248,
+				0.09077630, 0.08552250, 0.07965624, 0.07812813,
+				0.07665118, 0.07570529, 0.09360718, 0.09719425]
+
+awg_poly = [polynomial(awgModel), polynomial(awgModel) * (1 + (0.089 * 1)), polynomial(awgModel) * (1 + (0.089 * 0.8))]
+awg_br = [21., 23.]
+awg_br_wt = [245., 265.]
+awgModel = PiecePolynomial(awg_poly, awg_br, awg_br_wt)
+
+awfc_poly = [polynomial(awfcModel), polynomial(awfcModel) * (1 - (0.142 * 1)), polynomial(awfcModel) * (1 - (0.142 * 0.8))]
+awfc_br = [21., 23.]
+awfcModel = PiecePolynomial(awfc_poly, awfc_br)
 
 parser = reqparse.RequestParser()
 parser.add_argument('start_date', type=inputs.date)
@@ -40,6 +79,44 @@ parser.add_argument('feed_pr', action='append')
 parser.add_argument('feed_wt', action='append')
 parser.add_argument('model_g_adj', action='append')
 parser.add_argument('model_fc_adj', action='append')
+
+parser.add_argument('group_num', type=str)
+parser.add_argument('wof_avg', type=float)
+parser.add_argument('wof_tot', type=float)
+parser.add_argument('start_num', type=int)
+parser.add_argument('start_avg_wt', type=float)
+parser.add_argument('start_avg_price_pig', type=float) #correction
+parser.add_argument('market_num', type=int)
+parser.add_argument('gilt_num', type=int)
+parser.add_argument('discount_num', type=int)
+parser.add_argument('death_num', type=int)
+parser.add_argument('transport_death_num', type=int)
+parser.add_argument('transfer_num', type=int)
+parser.add_argument('market_avg_wt', type=float)
+parser.add_argument('gilt_avg_wt', type=float)
+parser.add_argument('discount_avg_wt', type=float)
+parser.add_argument('death_avg_wt', type=float)
+parser.add_argument('transport_death_avg_wt', type=float)
+parser.add_argument('transfer_avg_wt', type=float)
+parser.add_argument('market_avg_price_pig', type=float) #correction
+parser.add_argument('gilt_avg_price_pig', type=float)
+parser.add_argument('discount_avg_price_pig', type=float)
+parser.add_argument('transfer_avg_price_pig', type=float)
+parser.add_argument('feed_conversion', type=float)
+parser.add_argument('avg_feed_cost', type=float) #addition
+parser.add_argument('yield_per', type=float)
+parser.add_argument('lean_per', type=float)
+parser.add_argument('market_std_dev_carcass_wt', type=float)
+parser.add_argument('load_avg_std_dev_carcass_wt', type=float)
+parser.add_argument('feed_grinding_rate', type=float)
+parser.add_argument('feed_delivery_rate', type=float)
+parser.add_argument('avg_feed_delivery_ton', type=float)
+parser.add_argument('trucking_market_rate', type=float)
+parser.add_argument('avg_trucking_market_pig', type=float)
+parser.add_argument('trucking_feeder_rate', type=float)
+parser.add_argument('avg_trucking_feeder_pig', type=float)
+parser.add_argument('rent_cost_week', type=float)
+parser.add_argument('overhead_cost_pig', type=float)
 
 def CreateSession():
         engine = create_engine(DB_URI)
@@ -158,48 +235,11 @@ class WeightOptApi(Resource):
     def get(self):
         args = parser.parse_args()
 
-        w2fDeath1 = [0]
-        w2fDeath2 = [-0.2500, 23.9464, -4.30357143]
-        w2fDeath3 = [11]
-        w2fDeath4 = [-526.6290 + 11, 66.8357, -2.03571429]
-        w2fDeath5 = [-725.9390 + 11, 64.3674, -1.35984848]
-        w2fDeath6 = [0]
-
-        w2fDeath_br = [0, 5, 13.1, 19.1, 27]
-
-        finModel = [0, 210.431209, -65.244076, 9.294793, -0.678313, 0.024900, -0.000365]
-        awgModel = [0.43503557, 2.16250341, -0.09743488, 0.00122924]
-        awfiModel = [0.90582088, 1.59691733, 0.24820408, -0.01655183, 0.00028117]
-        awfcModel = [1.1, 0.10728206]
-        awgAdjust = [273, 0, 24.5]
-        awfcAdjust = [2.65, 0, 24.5]
-
-        feed_cost_br = [2.62141065, 4.12473822, 
-				        6.29822741, 8.85710311, 11.78041278, 14.48593525,
-				        17.1341315, 17.63894897, 18.8702043, 20.1224158]
-
-        feed_cost_br_wt = [ 20., 30.,
-					        50., 80., 120., 160.,
-            		        200., 225., 245., 265.]
-
-        priceCutoff = [	0.29438071, 0.18980649, 0.11205248,
-				        0.09077630, 0.08552250, 0.07965624, 0.07812813,
-				        0.07665118, 0.07570529, 0.09360718, 0.09719425]
-
         args['feed_pr'] = [float(x) for x in args['feed_pr']]
         args['feed_wt'] = [float(x) for x in args['feed_wt']]
 
         args['model_g_adj'] = [float(x) for x in args['model_g_adj']]
         args['model_fc_adj'] = [float(x) for x in args['model_fc_adj']]
-
-        awg_poly = [polynomial(awgModel), polynomial(awgModel) * (1 + (0.089 * 1)), polynomial(awgModel) * (1 + (0.089 * 0.8))]
-        awg_br = [21., 23.]
-        awg_br_wt = [245., 265.]
-        awgModel = PiecePolynomial(awg_poly, awg_br, awg_br_wt)
-
-        awfc_poly = [polynomial(awfcModel), polynomial(awfcModel) * (1 - (0.142 * 1)), polynomial(awfcModel) * (1 - (0.142 * 0.8))]
-        awfc_br = [21., 23.]
-        awfcModel = PiecePolynomial(awfc_poly, awfc_br)
 
         feed_cost_poly = []
         for cost in args['feed_pr']:
@@ -224,3 +264,68 @@ class WeightOptApi(Resource):
         elif args['curve'].upper() == 'OPT_PRICE_RANGE':
             x = numpy.arange(50, 111, 1)
             return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})
+
+class BudgetApi(Resource):
+    def get(self, GroupNum = '1505Bahl', BudgetType = 'target'):
+        session = CreateSession()
+        budget_results = session.query(Budgets).filter( (Budgets.group_num == GroupNum) & (Budgets.budget_type == BudgetType.lower()) ).all()
+
+        schema = BudgetsSchema(many=True)
+        result = schema.dump(budget_results)
+
+        return jsonify({'budget' : result.data})
+
+class ReportCardApi(Resource):
+    def get(self):
+        args = parser.parse_args()
+
+        awgModelAdjust = [args['market_avg_wt'], 0, args['wof_avg'] + 6]
+        awfcModelAdjust = [args['feed_conversion'], 0, args['wof_avg'] + 6]
+        feedCostModel = PiecePolynomial([args['avg_feed_cost']], [], [])
+
+        gm = PigGrowthModel(awgModel, awfcModel, feedCostModel, awgModelAdjust, awfcModelAdjust, args['start_avg_wt'])
+        
+        report_card = {}
+        report_card['actual'] = {}
+        report_card['norm'] = {}
+
+        session = CreateSession()
+        budget_results = session.query(Budgets).filter( (Budgets.group_num == args['group_num']) & (Budgets.budget_type == 'target') ).all()
+        schema = BudgetsSchema(many=True)
+        result = schema.dump(budget_results)
+
+        group_budget = simplejson.loads(simplejson.dumps(result.data[0]))
+
+        rc_dict = simplejson.load(open("FlaskWebProject\\static\\storage\\report_card_struc.txt"))
+
+        wt_produced = ( ( args['market_num'] * args['market_avg_wt'] ) + ( args['death_num'] * args['death_avg_wt'] ) + ( args['discount_num'] * args['discount_avg_wt'] ) + ( args['transport_death_num'] * args['transport_death_avg_wt'] ) ) - ( args['start_num'] * args['start_avg_wt'] )
+
+        start_diff = args['start_num'] - group_budget['start_num']
+        rc_dict['tot']['start_qty']['sub']['rent']['cost'] = round( ( ( args['rent_cost_week'] * args['wof_tot'] ) / group_budget['start_num'] ) * start_diff , 2 )
+        rc_dict['tot']['start_qty']['sub']['pig_value']['cost'] = round( ( start_diff * ( args['market_num'] / args['start_num'] ) * ( args['market_avg_price_pig'] - gm.feed_cost_total(args['wof_avg']) - args['start_avg_price_pig'] ) ) +
+                                                          start_diff * ( args['discount_num'] / args['start_num'] ) * ( args['discount_avg_price_pig'] - gm.feed_cost_total(args['wof_avg']) + gm.feed_cost_total(gm.wt_total.weeks(args['discount_avg_wt'])) - args['start_avg_price_pig'] ), 2 )
+
+        death_diff = round( ( ( group_budget['death_num'] / group_budget['start_num'] ) - ( args['death_num'] / args['start_num'] ) ) * args['start_num'] , 0 )
+        rc_dict['tot']['death_loss']['sub']['pig_value']['cost'] = round( death_diff * ( args['market_avg_price_pig'] - gm.feed_cost_total(args['wof_avg']) + gm.feed_cost_total(gm.wt_total.weeks(args['death_avg_wt'])) ) , 2 )
+
+        discount_diff = round( ( ( group_budget['discount_num'] / group_budget['start_num'] ) - ( args['discount_num'] / args['start_num'] ) ) * args['start_num'] , 0 )
+        rc_dict['tot']['discount_loss']['sub']['pig_value']['cost'] = round( discount_diff * ( args['market_avg_price_pig'] - args['discount_avg_price_pig'] - gm.feed_cost_total(args['wof_avg']) + gm.feed_cost_total(gm.wt_total.weeks(args['discount_avg_wt'])) ) , 2 )
+
+        transport_death_diff = round( ( ( group_budget['transport_death_num'] / group_budget['start_num'] ) - ( args['transport_death_num'] / args['start_num'] ) ) * args['start_num'] , 0 )
+        rc_dict['tot']['transport_death_loss']['sub']['pig_value']['cost'] = round( transport_death_diff * args['market_avg_price_pig'] , 2 )
+
+        feed_diff = ( wt_produced * ( group_budget['feed_conversion'] - args['feed_conversion'] ) )
+        rc_dict['tot']['feed_conversion']['sub']['feed_grinding']['cost'] = round( ( feed_diff / 2000 ) * args['feed_grinding_rate'] , 2 )
+        rc_dict['tot']['feed_conversion']['sub']['feed_delivery']['cost'] = round( ( ( feed_diff / 2000 ) / args['avg_feed_delivery_ton'] ) * args['feed_delivery_rate'] , 2 )
+        rc_dict['tot']['feed_conversion']['sub']['feed_value']['cost'] = round( feed_diff * args['avg_feed_cost'] , 2 )
+
+        for total in rc_dict['tot']:
+            for sub_total in rc_dict['tot'][total]['sub']:
+                rc_dict['tot'][total]['sub'][sub_total]['cost_pig'] = round( rc_dict['tot'][total]['sub'][sub_total]['cost'] / args['start_num'] , 2 )
+                rc_dict['tot'][total]['total_cost'] = rc_dict['tot'][total]['total_cost'] + rc_dict['tot'][total]['sub'][sub_total]['cost']
+                rc_dict['tot'][total]['total_cost_pig'] = rc_dict['tot'][total]['total_cost_pig'] + rc_dict['tot'][total]['sub'][sub_total]['cost_pig']
+
+            rc_dict['grand_total_cost'] = rc_dict['grand_total_cost'] + rc_dict['tot'][total]['total_cost']
+            rc_dict['grand_total_cost_pig'] = rc_dict['grand_total_cost_pig'] + rc_dict['tot'][total]['total_cost_pig']
+
+        return jsonify({'report_card' : rc_dict})

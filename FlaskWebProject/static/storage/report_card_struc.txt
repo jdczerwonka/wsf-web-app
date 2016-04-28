@@ -1,0 +1,98 @@
+{
+	"tot": {
+		"start_qty": {
+			"sub": {
+				"rent": {
+					"cost": 0,
+					"cost_pig": 0
+				},
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"death_loss": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"discount_loss": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"transport_death_loss": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"feed_conversion": {
+			"sub": {
+				"feed_grinding": {
+					"cost": 0,
+					"cost_pig": 0
+				},
+				"feed_delivery": {
+					"cost": 0,
+					"cost_pig": 0
+				},
+				"feed_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"avg_live_wt": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"load_std_dev": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		},
+		"group_std_dev": {
+			"sub": {
+				"pig_value": {
+					"cost": 0,
+					"cost_pig": 0
+				}
+			},
+			"total_cost": 0,
+			"total_cost_pig": 0
+		}
+	},
+	"grand_total_cost": 0,
+	"grand_total_cost_pig": 0
+}

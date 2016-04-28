@@ -1,0 +1,802 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }} - {{ message }}</h2>
+
+<div class="row">
+    <div class="row" style="margin-top:20px;">
+        <div class="col-xs-3">
+            <form class="form-horizontal" id="frmReportCard">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Input</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Start Number</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="start_num" value="2443" /></td>
+                        </tr>
+                        <tr>
+                            <th>Market Number</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="market_num" value="2236" /></td>
+                        </tr>
+                        <tr>
+                            <th>Death Number</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="death_num" value="116" /></td>
+                        </tr>
+                        <tr>
+                            <th>Discount Number</th>
+                            <td><input type="text" class="form-control inp-rc" name="discount_num" value="78" /></td>
+                        </tr>
+                        <tr>
+                            <th>Transport Death Number</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="transport_death_num" value="13" /></td>
+                        </tr>
+                        <tr>
+                            <th>Start Avg Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="start_avg_wt" value="33.3" /></td>
+                        </tr>
+                        <tr>
+                            <th>Market Avg Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="market_avg_wt" value="276.6" /></td>
+                        </tr>
+                        <tr>
+                            <th>Death Avg Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="death_avg_wt" value="125.4" /></td>
+                        </tr>
+                        <tr>
+                            <th>Discount Avg Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="discount_avg_wt" value="207.1" /></td>
+                        </tr>
+                        <tr>
+                            <th>Transport Death Avg Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="transport_death_avg_wt" value="273.8" /></td>
+                        </tr>
+                        <tr>
+                            <th>Start Avg Price</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="start_avg_price_pig" value="61.00" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Market Avg Price</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="market_avg_price_pig" value="161.69" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Discount Avg Price</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="discount_avg_price_pig" value="80.29" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Feed Conversion</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="feed_conversion" value="2.76" /></td>
+                        </tr>
+                        <tr>
+                            <th>Avg Feed Cost</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="avg_feed_cost" value="0.0960" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avg WOF</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="wof_avg" value="18.7" /></td>
+                        </tr>
+                        <tr>
+                            <th>Total WOF</th>
+                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="wof_tot" value="21.1" /></td>
+                        </tr>
+                        <tr>
+                            <th>Feed Grinding Rate</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="feed_grinding_rate" value="12.00" />
+                                    <div class="input-group-addon">/ ton</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Feed Delivery Rate</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="feed_delivery_rate" value="200.00" />
+                                    <div class="input-group-addon">/ trip</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Trucking Market Rate</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="trucking_market_rate" value="800.00" />
+                                    <div class="input-group-addon">/ trip</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Trucking Feeder Rate</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="trucking_feeder_rate" value="400.00" />
+                                    <div class="input-group-addon">/ trip</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avg Feed Delivery</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <input type="text" class="form-control inp-rc" name="avg_feed_delivery_ton" value="24.0" />
+                                    <div class="input-group-addon">tons</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avg Trucking Market</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <input type="text" class="form-control inp-rc" name="avg_trucking_market_pig" value="170" />
+                                    <div class="input-group-addon">pigs</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avg Trucking Feeder</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <input type="text" class="form-control inp-rc" name="avg_trucking_feeder_pig" value="600" />
+                                    <div class="input-group-addon">pigs</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Weekly Rent</th>
+                            <td class="has-feedback">
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="text" class="form-control inp-rc" name="rent_cost_week" value="1384.00" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-xs-9">
+        <div class="row" style="margin-top:20px; margin-bottom:20px;">
+            <div class="col-xs-12">
+                <form class="form-horizontal" id="frmGroupNum">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label" style="text-align:left;">Group Number</label>
+                        <div class="col-xs-10">
+                            <select class="form-control" name="group_num">
+                                <option>1505Bahl</option>
+                                <option>1502Tole</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Group</th>
+                            <th>Target</th>
+                            <th>Total</th>
+                            <th>Cost</th>
+                            <th>Cost / Pig</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-toggle="collapse" data-target="#row-start-qty" class="clickable start_qty">
+                            <th>Starting Quantity</th>
+                            <td>2443</td>
+                            <td>2500</td>
+                            <td>Total</td>
+                            <td class="total_cost">-2132.05</td>
+                            <td class="total_cost_pig">-0.87</td>
+                        </tr>
+                    <tbody id="row-start-qty" class="collapse">
+                        <tr class="start_qty rent">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Rent</td>
+                            <td class="cost">-662.95</td>
+                            <td class="cost_pig">-0.27</td>
+                        </tr>
+                        <tr class="start_qty pig_value">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Pig Value</td>
+                            <td class="cost">-1469.10</td>
+                            <td class="cost_pig">-0.60</td>
+                        </tr>
+                    </tbody>
+                    <tr data-toggle="collapse" data-target="#row-death-loss" class="clickable death_loss">
+                        <th>Death Loss</th>
+                        <td>5.40%</td>
+                        <td>2.25%</td>
+                        <td>Total</td>
+                        <td class="total_cost">-9479.32</td>
+                        <td class="total_cost_pig">-3.88</td>
+                    </tr>
+                    <tbody id="row-death-loss" class="collapse">
+                        <tr class="death_loss pig_value">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Pig Value</td>
+                            <td class="cost">-9479.32</td>
+                            <td class="cost_pig">-3.88</td>
+                        </tr>
+                    </tbody>
+                    <tr data-toggle="collapse" data-target="#row-discount-loss" class="clickable discount_loss">
+                        <th>Discount Loss</th>
+                        <td>3.07%</td>
+                        <td>0.75%</td>
+                        <td>Total</td>
+                        <td class="total_cost">-4639.80</td>
+                        <td class="total_cost_pig">-1.90</td>
+                    </tr>
+                    <tbody id="row-discount-loss" class="collapse">
+                        <tr class="discount_loss pig_value">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Pig Value</td>
+                            <td class="cost">-4639.80</td>
+                            <td class="cost_pig">-1.90</td>
+                        </tr>
+                    </tbody>
+                    <tr data-toggle="collapse" data-target="#row-transport-death-loss" class="clickable transport_death_loss">
+                        <th>Transport Death Loss</th>
+                        <td>3.07%</td>
+                        <td>0.75%</td>
+                        <td>Total</td>
+                        <td class="total_cost">0.00</td>
+                        <td class="total_cost_pig">0.00</td>
+                    </tr>
+                    <tbody id="row-transport-death-loss" class="collapse">
+                        <tr class="transport_death_loss pig_value">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Pig Value</td>
+                            <td class="cost">0.00</td>
+                            <td class="cost_pig">0.00</td>
+                        </tr>
+                    </tbody>
+                    <tr data-toggle="collapse" data-target="#row-feed-conversion" class="clickable feed_conversion">
+                        <th>Feed Conversion</th>
+                        <td>2.76</td>
+                        <td>2.80</td>
+                        <td>Total</td>
+                        <td class="total_cost">2697.20</td>
+                        <td class="total_cost_pig">1.10</td>
+                    </tr>
+                    <tbody id="row-feed-conversion" class="collapse">
+                        <tr class="feed_conversion feed_grinding">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Feed Grinding</td>
+                            <td class="cost">158.68</td>
+                            <td class="cost_pig">0.06</td>
+                        </tr>
+                        <tr class="feed_conversion feed_delivery">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Feed Delivery</td>
+                            <td class="cost">0.00</td>
+                            <td class="cost_pig">0.00</td>
+                        </tr>
+                        <tr class="feed_conversion feed_value">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td>Feed Value</td>
+                            <td class="cost">2538.51</td>
+                            <td class="cost_pig">1.04</td>
+                        </tr>
+                    </tbody>
+                    <tr class="avg_live_wt">
+                        <th>Avg Live Wt</th>
+                        <td>276.6</td>
+                        <td></td>
+                        <td>Total</td>
+                        <td class="total_cost">-9945.03</td>
+                        <td class="total_cost_pig">-4.07</td>
+                    </tr>
+                    <tr class="group_std_dev">
+                        <th>Group Std Dev Carcass Wt</th>
+                        <td>17.5</td>
+                        <td>14.0</td>
+                        <td>Total</td>
+                        <td class="total_cost">-2685.90</td>
+                        <td class="total_cost_pig">-1.10</td>
+                    </tr>
+                    <tr class="load_std_dev">
+                        <th>Load Std Dev Carcass Wt</th>
+                        <td>18.0</td>
+                        <td>16.0</td>
+                        <td>Total</td>
+                        <td class="total_cost">0</td>
+                        <td class="total_cost_pig">0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" id="btnGenerateReportCard">Generate Report Card</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#frmReportCard").formValidation({
+            framework: "bootstrap",
+            err: {
+                container: "tooltip"
+            },
+            row: {
+                selector: 'td'
+            },
+            fields: {
+                start_num: {
+                    validators: {
+                        notEmpty: {
+                            message: "Start Number is required"
+                        },
+                        numeric: {
+                            message: "Start Number must be a number"
+                        },
+                        between: {
+                            min: 0,
+                            max: 20000,
+                            message: "Start Number must be between %s and %s"
+                        }
+                    }
+                },
+                market_num: {
+                    validators: {
+                        notEmpty: {
+                            message: "Market Number is required"
+                        },
+                        numeric: {
+                            message: "Market Number must be a number"
+                        },
+                        between: {
+                            min: 0,
+                            max: 20000,
+                            message: "Market Number must be between %s and %s"
+                        }
+                    }
+                },
+                death_num: {
+                    validators: {
+                        notEmpty: {
+                            message: "Death Number is required"
+                        },
+                        numeric: {
+                            message: "Death Number must be a number"
+                        },
+                        between: {
+                            min: 0,
+                            max: 5000,
+                            message: "Death Number must be between %s and %s"
+                        }
+                    }
+                },
+                discount_num: {
+                    validators: {
+                        notEmpty: {
+                            message: "Discount Number is required"
+                        },
+                        numeric: {
+                            message: "Discount Number must be a number"
+                        },
+                        between: {
+                            min: 0,
+                            max: 5000,
+                            message: "Discount Number must be between %s and %s"
+                        }
+                    }
+                },
+                transport_death_num: {
+                    validators: {
+                        notEmpty: {
+                            message: "Transport Death Number is required"
+                        },
+                        numeric: {
+                            message: "Transport Death Number must be a number"
+                        },
+                        between: {
+                            min: 0,
+                            max: 1000,
+                            message: "Transport Death Number must be between %s and %s"
+                        }
+                    }
+                },
+                start_avg_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Start Avg Wt is required"
+                        },
+                        numeric: {
+                            message: "Start Avg Wt must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 350,
+                            message: "Start Avg Wt must be between %s and %s"
+                        }
+                    }
+                },
+                market_avg_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Market Avg Wt is required"
+                        },
+                        numeric: {
+                            message: "Market Avg Wt must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 350,
+                            message: "Market Avg Wt must be between %s and %s"
+                        }
+                    }
+                },
+                death_avg_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Death Avg Wt is required"
+                        },
+                        numeric: {
+                            message: "Death Avg Wt must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 350,
+                            message: "Death Avg Wt must be between %s and %s"
+                        }
+                    }
+                },
+                discount_avg_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Discount Avg Wt is required"
+                        },
+                        numeric: {
+                            message: "Discount Avg Wt must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 350,
+                            message: "Discount Avg Wt must be between %s and %s"
+                        }
+                    }
+                },
+                transport_death_avg_wt: {
+                    validators: {
+                        notEmpty: {
+                            message: "Transport Death Avg Wt is required"
+                        },
+                        numeric: {
+                            message: "Transport Death Avg Wt must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 350,
+                            message: "Transport Death Avg Wt must be between %s and %s"
+                        }
+                    }
+                },
+                start_avg_price_pig: {
+                    validators: {
+                        notEmpty: {
+                            message: "Start Avg Price is required"
+                        },
+                        numeric: {
+                            message: "Start Avg Price must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 300,
+                            message: "Start Avg Price must be between %s and %s"
+                        }
+                    }
+                },
+                market_avg_price_pig: {
+                    validators: {
+                        notEmpty: {
+                            message: "Market Avg Price is required"
+                        },
+                        numeric: {
+                            message: "Market Avg Price must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 300,
+                            message: "Market Avg Price must be between %s and %s"
+                        }
+                    }
+                },
+                discount_avg_price_pig: {
+                    validators: {
+                        notEmpty: {
+                            message: "Discount Avg Price is required"
+                        },
+                        numeric: {
+                            message: "Discount Avg Price must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 300,
+                            message: "Discount Avg Price must be between %s and %s"
+                        }
+                    }
+                },
+                feed_conversion: {
+                    validators: {
+                        notEmpty: {
+                            message: "Feed Conversion is required"
+                        },
+                        numeric: {
+                            message: "Feed Conversion must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 4,
+                            message: "Feed Conversion must be between %s and %s"
+                        }
+                    }
+                },
+                avg_feed_cost: {
+                    validators: {
+                        notEmpty: {
+                            message: "Avg Feed Cost is required"
+                        },
+                        numeric: {
+                            message: "Avg Feed Cost must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 1,
+                            message: "Avg Feed Cost must be between %s and %s"
+                        }
+                    }
+                },
+                wof_avg: {
+                    validators: {
+                        notEmpty: {
+                            message: "Avg WOF is required"
+                        },
+                        numeric: {
+                            message: "Avg WOF must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 40,
+                            message: "Avg WOF must be between %s and %s"
+                        }
+                    }
+                },
+                wof_tot: {
+                    validators: {
+                        notEmpty: {
+                            message: "Total WOF is required"
+                        },
+                        numeric: {
+                            message: "Total WOF must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 40,
+                            message: "Total WOF must be between %s and %s"
+                        }
+                    }
+                },
+                feed_grinding_rate: {
+                    validators: {
+                            notEmpty: {
+                                message: "Feed Grinding Rate is required"
+                            },
+                        numeric: {
+                            message: "Feed Grinding Rate must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 30,
+                            message: "Feed Grinding Rate must be between %s and %s"
+                        }
+                    }
+                },
+                feed_delivery_rate: {
+                    validators: {
+                            notEmpty: {
+                                message: "Feed Delivery Rate is required"
+                            },
+                        numeric: {
+                            message: "Feed Delivery Rate must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 500,
+                            message: "Feed Delivery Rate must be between %s and %s"
+                        }
+                    }
+                },
+                trucking_market_rate: {
+                    validators: {
+                            notEmpty: {
+                                message: "Trucking Market Rate is required"
+                            },
+                        numeric: {
+                            message: "Trucking Market Rate must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 2000,
+                            message: "Trucking Market Rate must be between %s and %s"
+                        }
+                    }
+                },
+                trucking_feeder_rate: {
+                    validators: {
+                            notEmpty: {
+                                message: "Trucking Feeder Rate is required"
+                            },
+                        numeric: {
+                            message: "Trucking Feeder Rate must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 2000,
+                            message: "Trucking Feeder Rate must be between %s and %s"
+                        }
+                    }
+                },
+                avg_feed_delivery_ton: {
+                    validators: {
+                            notEmpty: {
+                                message: "Avg Feed Delivery is required"
+                            },
+                        numeric: {
+                            message: "Avg Feed Delivery must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 50,
+                            message: "Avg Feed Delivery must be between %s and %s"
+                        }
+                    }
+                },
+                avg_trucking_market_pig: {
+                    validators: {
+                            notEmpty: {
+                                message: "Avg Trucking Market is required"
+                            },
+                        numeric: {
+                            message: "Avg Trucking Market must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 300,
+                            message: "Avg Trucking Market must be between %s and %s"
+                        }
+                    }
+                },
+                avg_trucking_feeder_pig: {
+                    validators: {
+                            notEmpty: {
+                                message: "Avg Trucking Feeder is required"
+                            },
+                        numeric: {
+                            message: "Avg Trucking Feeder must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 1000,
+                            message: "Avg Trucking Feeder must be between %s and %s"
+                        }
+                    }
+                },
+                rent_cost_week: {
+                    validators: {
+                        notEmpty: {
+                            message: "Weekly Rent is required"
+                        },
+                        numeric: {
+                            message: "Weekly Rent must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 5000,
+                            message: "Weekly Rent must be between %s and %s"
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    $("#frmReportCard input").blur(function () {
+        $(this).parent().removeClass("has-success");
+    });
+
+    $("#btnGenerateReportCard").click(function () {
+        calculateReportCard();
+    });
+
+    function calculateReportCard() {
+        var url = "http://wsf-web-app.azurewebsites.net/api/v1/reportCard";
+        url = url + "?" + $("#frmGroupNum").serialize() + "&" + $("#frmReportCard").serialize();
+        $.getJSON(url).done(function (data) {
+            reportCard = data.report_card;
+            console.log(reportCard);
+        });
+    }
+
+    calculateReportCard();
+</script>
+
+{% endblock %}

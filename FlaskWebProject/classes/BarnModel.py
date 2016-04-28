@@ -5,8 +5,7 @@ import operator
 import math
 import numpy
 import pandas
-from scipy.stats import norm
-from scipy.stats import logistic
+from scipy.stats import norm, logistic
 from scipy.optimize import fsolve
 
 polynomial = numpy.polynomial.polynomial.Polynomial
@@ -556,4 +555,4 @@ class PiecePolynomial():
             if not break_bool:
                 roots = numpy.append(roots, root)
 
-        return roots
+        return roots - self.shift_x

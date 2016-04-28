@@ -582,7 +582,7 @@
     });
 
     function generatePlot() {
-        var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOptApi";
+        var url = "http://wsf-web-app.azurewebsites.net/api/v1/weightOpt";
         url = url + "?" + $("#frmWeightOpt").serialize() + "&" + $("#frmFeed").serialize() + "&" + $("#frmModelAdj").serialize();
 
         $.getJSON(url).done(function (data) {

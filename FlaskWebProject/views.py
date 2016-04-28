@@ -29,6 +29,18 @@ def weightOpt():
         message='Determine the optimal selling weight for a group of pigs.'
     )
 
+@app.route('/reportCard')
+def reportCard():
+    """Renders the Report Card page."""
+    return render_template(
+        'reportCard.html',
+        title='Report Card',
+        year=datetime.now().year,
+        message='Evaluates how a group of pigs did.'
+    )
+
 api.add_resource(IngredientsApi, API_HEADER + '/ingredients', API_HEADER + '/ingredients/<IngrStr>')
 api.add_resource(GroupsApi, API_HEADER + '/groups', API_HEADER + '/groups/<GroupStr>', API_HEADER + '/groups/<GroupStr>/<GroupInfo>')
-api.add_resource(WeightOptApi, API_HEADER + '/weightOptApi')
+api.add_resource(WeightOptApi, API_HEADER + '/weightOpt')
+api.add_resource(ReportCardApi, API_HEADER + '/reportCard')
+api.add_resource(BudgetApi, API_HEADER + '/budget/<GroupNum>/<BudgetType>')

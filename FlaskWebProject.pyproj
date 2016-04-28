@@ -31,6 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FlaskWebProject\classes\BarnModel.py" />
+    <Compile Include="FlaskWebProject\classes\class_testing.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FlaskWebProject\classes\__init__.py" />
     <Compile Include="FlaskWebProject\db\schemas.py">
       <SubType>Code</SubType>
@@ -73,28 +76,14 @@
     <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.js" />
     <Content Include="FlaskWebProject\static\scripts\jquery-2.2.1.min.js" />
     <Content Include="FlaskWebProject\static\storage\Cargill Lean Value Matrix.csv" />
+    <Content Include="FlaskWebProject\static\storage\report_card_struc.txt" />
+    <Content Include="FlaskWebProject\templates\reportCard.html" />
     <Content Include="FlaskWebProject\templates\weightOpt.html" />
     <Content Include="requirements.txt" />
-    <Content Include="FlaskWebProject\static\content\bootstrap.css" />
-    <Content Include="FlaskWebProject\static\content\bootstrap.min.css" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="FlaskWebProject\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="FlaskWebProject\static\scripts\bootstrap.js" />
-    <Content Include="FlaskWebProject\static\scripts\bootstrap.min.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery-1.10.2.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="FlaskWebProject\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery.validate.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery.validate.min.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="FlaskWebProject\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="FlaskWebProject\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="FlaskWebProject\static\scripts\respond.js" />
-    <Content Include="FlaskWebProject\static\scripts\respond.min.js" />
     <Content Include="FlaskWebProject\static\scripts\_references.js" />
     <Content Include="FlaskWebProject\templates\about.html" />
     <Content Include="FlaskWebProject\templates\contact.html" />
