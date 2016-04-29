@@ -30,10 +30,14 @@ textarea {
     text-decoration: none;
 }
 
-.table > tbody > tr > th,
 .table > thead > tr > th,
 .table > tbody > tr > td {
     text-align: center;
+    vertical-align: middle;
+}
+
+.table > tbody > tr > th {
+    text-align: left;
     vertical-align: middle;
 }
 
@@ -42,6 +46,11 @@ textarea {
 #frmReportCard .has-feedback .form-control {
     padding-right: 12px;
     margin: 0 auto;
+}
+
+#frmReportCard tr th {
+    width: 50%;
+    font-size: 12px;
 }
 
 .inp-feed-pr {

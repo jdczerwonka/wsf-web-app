@@ -43,4 +43,4 @@ api.add_resource(IngredientsApi, API_HEADER + '/ingredients', API_HEADER + '/ing
 api.add_resource(GroupsApi, API_HEADER + '/groups', API_HEADER + '/groups/<GroupStr>', API_HEADER + '/groups/<GroupStr>/<GroupInfo>')
 api.add_resource(WeightOptApi, API_HEADER + '/weightOpt')
 api.add_resource(ReportCardApi, API_HEADER + '/reportCard')
-api.add_resource(BudgetApi, API_HEADER + '/budget/<GroupNum>/<BudgetType>')
+api.add_resource(BudgetApi, API_HEADER + '/budgets/<GroupNum>')

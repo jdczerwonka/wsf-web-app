@@ -80,6 +80,8 @@ parser.add_argument('feed_wt', action='append')
 parser.add_argument('model_g_adj', action='append')
 parser.add_argument('model_fc_adj', action='append')
 
+parser.add_argument('budget_type', type=str)
+
 parser.add_argument('group_num', type=str)
 parser.add_argument('wof_avg', type=float)
 parser.add_argument('wof_tot', type=float)
@@ -266,9 +268,14 @@ class WeightOptApi(Resource):
             return jsonify({'xval' : x.tolist(), 'yval' : bm.calc_opt_price_curve(x)})
 
 class BudgetApi(Resource):
-    def get(self, GroupNum = '1505Bahl', BudgetType = 'target'):
+    def get(self, GroupNum = '1505Bahl'):
+        args = parser.parse_args()
+
+        if args['budget_type'] is None:
+            args['budget_type'] = 'target'
+
         session = CreateSession()
-        budget_results = session.query(Budgets).filter( (Budgets.group_num == GroupNum) & (Budgets.budget_type == BudgetType.lower()) ).all()
+        budget_results = session.query(Budgets).filter( (Budgets.group_num == GroupNum) & (Budgets.budget_type == args['budget_type'].lower()) ).all()
 
         schema = BudgetsSchema(many=True)
         result = schema.dump(budget_results)

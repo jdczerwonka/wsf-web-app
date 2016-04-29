@@ -5,61 +5,61 @@
 <h2>{{ title }} - {{ message }}</h2>
 
 <div class="row">
-    <div class="row" style="margin-top:20px;">
-        <div class="col-xs-3">
+    <div class="col-xs-4">
+        <div class="row" style="margin-top:20px;">
             <form class="form-horizontal" id="frmReportCard">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th>Input</th>
-                            <th>Value</th>
+                            <th style="font-size:14px;">Input</th>
+                            <th style="font-size:14px;">Value</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th>Start Number</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="start_num" value="2443" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="start_num" value="2443" /></td>
                         </tr>
                         <tr>
                             <th>Market Number</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="market_num" value="2236" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="market_num" value="2236" /></td>
                         </tr>
                         <tr>
                             <th>Death Number</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="death_num" value="116" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="death_num" value="116" /></td>
                         </tr>
                         <tr>
                             <th>Discount Number</th>
-                            <td><input type="text" class="form-control inp-rc" name="discount_num" value="78" /></td>
+                            <td><input type="text" class="form-control input-sm inp-rc" name="discount_num" value="78" /></td>
                         </tr>
                         <tr>
                             <th>Transport Death Number</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="transport_death_num" value="13" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="transport_death_num" value="13" /></td>
                         </tr>
                         <tr>
                             <th>Start Avg Wt</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="start_avg_wt" value="33.3" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="start_avg_wt" value="33.3" /></td>
                         </tr>
                         <tr>
                             <th>Market Avg Wt</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="market_avg_wt" value="276.6" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="market_avg_wt" value="276.6" /></td>
                         </tr>
                         <tr>
                             <th>Death Avg Wt</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="death_avg_wt" value="125.4" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="death_avg_wt" value="125.4" /></td>
                         </tr>
                         <tr>
                             <th>Discount Avg Wt</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="discount_avg_wt" value="207.1" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="discount_avg_wt" value="207.1" /></td>
                         </tr>
                         <tr>
                             <th>Transport Death Avg Wt</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="transport_death_avg_wt" value="273.8" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="transport_death_avg_wt" value="273.8" /></td>
                         </tr>
                         <tr>
                             <th>Start Avg Price</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="start_avg_price_pig" value="61.00" />
                                 </div>
@@ -68,7 +68,7 @@
                         <tr>
                             <th>Market Avg Price</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="market_avg_price_pig" value="161.69" />
                                 </div>
@@ -77,20 +77,46 @@
                         <tr>
                             <th>Discount Avg Price</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="discount_avg_price_pig" value="80.29" />
                                 </div>
                             </td>
                         </tr>
                         <tr>
+                            <th>Yield Percent</th>
+                            <td class="has-feedback">
+                                <div class="input-group input-group-sm">                                
+                                    <input type="text" class="form-control inp-rc" name="yield_per" value="76.00" />
+                                    <div class="input-group-addon">%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Lean Percent</th>
+                            <td class="has-feedback">
+                                <div class="input-group input-group-sm">                                    
+                                    <input type="text" class="form-control inp-rc" name="lean_per" value="55.00" />
+                                    <div class="input-group-addon">%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Load Std Dev Carcass Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="load_avg_std_dev_carcass_wt" value="17.5" /></td>
+                        </tr>
+                        <tr>
+                            <th>Group Std Dev Carcass Wt</th>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="market_std_dev_carcass_wt" value="19.0" /></td>
+                        </tr>
+                        <tr>
                             <th>Feed Conversion</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="feed_conversion" value="2.76" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="feed_conversion" value="2.76" /></td>
                         </tr>
                         <tr>
                             <th>Avg Feed Cost</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="avg_feed_cost" value="0.0960" />
                                 </div>
@@ -98,16 +124,16 @@
                         </tr>
                         <tr>
                             <th>Avg WOF</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="wof_avg" value="18.7" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="wof_avg" value="18.7" /></td>
                         </tr>
                         <tr>
                             <th>Total WOF</th>
-                            <td class="has-feedback"><input type="text" class="form-control inp-rc" name="wof_tot" value="21.1" /></td>
+                            <td class="has-feedback"><input type="text" class="form-control input-sm inp-rc" name="wof_tot" value="21.1" /></td>
                         </tr>
                         <tr>
                             <th>Feed Grinding Rate</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="feed_grinding_rate" value="12.00" />
                                     <div class="input-group-addon">/ ton</div>
@@ -117,7 +143,7 @@
                         <tr>
                             <th>Feed Delivery Rate</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="feed_delivery_rate" value="200.00" />
                                     <div class="input-group-addon">/ trip</div>
@@ -127,7 +153,7 @@
                         <tr>
                             <th>Trucking Market Rate</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="trucking_market_rate" value="800.00" />
                                     <div class="input-group-addon">/ trip</div>
@@ -137,7 +163,7 @@
                         <tr>
                             <th>Trucking Feeder Rate</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="trucking_feeder_rate" value="400.00" />
                                     <div class="input-group-addon">/ trip</div>
@@ -147,7 +173,7 @@
                         <tr>
                             <th>Avg Feed Delivery</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <input type="text" class="form-control inp-rc" name="avg_feed_delivery_ton" value="24.0" />
                                     <div class="input-group-addon">tons</div>
                                 </div>
@@ -156,7 +182,7 @@
                         <tr>
                             <th>Avg Trucking Market</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <input type="text" class="form-control inp-rc" name="avg_trucking_market_pig" value="170" />
                                     <div class="input-group-addon">pigs</div>
                                 </div>
@@ -165,7 +191,7 @@
                         <tr>
                             <th>Avg Trucking Feeder</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <input type="text" class="form-control inp-rc" name="avg_trucking_feeder_pig" value="600" />
                                     <div class="input-group-addon">pigs</div>
                                 </div>
@@ -174,7 +200,7 @@
                         <tr>
                             <th>Weekly Rent</th>
                             <td class="has-feedback">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-addon">$</div>
                                     <input type="text" class="form-control inp-rc" name="rent_cost_week" value="1384.00" />
                                 </div>
@@ -186,7 +212,7 @@
         </div>
     </div>
 
-    <div class="col-xs-9">
+    <div class="col-xs-8">
         <div class="row" style="margin-top:20px; margin-bottom:20px;">
             <div class="col-xs-12">
                 <form class="form-horizontal" id="frmGroupNum">
@@ -209,7 +235,7 @@
                     <thead>
                         <tr>
                             <th>Category</th>
-                            <th>Group</th>
+                            <th>Actual</th>
                             <th>Target</th>
                             <th>Total</th>
                             <th>Cost</th>
@@ -219,142 +245,142 @@
                     <tbody>
                         <tr data-toggle="collapse" data-target="#row-start-qty" class="clickable start_qty">
                             <th>Starting Quantity</th>
-                            <td>2443</td>
-                            <td>2500</td>
+                            <td class="actual">2443</td>
+                            <td class="target">2500</td>
                             <td>Total</td>
                             <td class="total_cost">-2132.05</td>
                             <td class="total_cost_pig">-0.87</td>
                         </tr>
-                    <tbody id="row-start-qty" class="collapse">
-                        <tr class="start_qty rent">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Rent</td>
-                            <td class="cost">-662.95</td>
-                            <td class="cost_pig">-0.27</td>
+                        <tbody id="row-start-qty" class="collapse">
+                            <tr class="start_qty rent">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Rent</td>
+                                <td class="cost">-662.95</td>
+                                <td class="cost_pig">-0.27</td>
+                            </tr>
+                            <tr class="start_qty pig_value">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Pig Value</td>
+                                <td class="cost">-1469.10</td>
+                                <td class="cost_pig">-0.60</td>
+                            </tr>
+                        </tbody>
+                        <tr data-toggle="collapse" data-target="#row-death-loss" class="clickable death_loss">
+                            <th>Death Loss</th>
+                            <td class="actual">5.40%</td>
+                            <td class="target">2.25%</td>
+                            <td>Total</td>
+                            <td class="total_cost">-9479.32</td>
+                            <td class="total_cost_pig">-3.88</td>
                         </tr>
-                        <tr class="start_qty pig_value">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Pig Value</td>
-                            <td class="cost">-1469.10</td>
-                            <td class="cost_pig">-0.60</td>
+                        <tbody id="row-death-loss" class="collapse">
+                            <tr class="death_loss pig_value">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Pig Value</td>
+                                <td class="cost">-9479.32</td>
+                                <td class="cost_pig">-3.88</td>
+                            </tr>
+                        </tbody>
+                        <tr data-toggle="collapse" data-target="#row-discount-loss" class="clickable discount_loss">
+                            <th>Discount Loss</th>
+                            <td class="actual">3.07%</td>
+                            <td class="target">0.75%</td>
+                            <td>Total</td>
+                            <td class="total_cost">-4639.80</td>
+                            <td class="total_cost_pig">-1.90</td>
                         </tr>
-                    </tbody>
-                    <tr data-toggle="collapse" data-target="#row-death-loss" class="clickable death_loss">
-                        <th>Death Loss</th>
-                        <td>5.40%</td>
-                        <td>2.25%</td>
-                        <td>Total</td>
-                        <td class="total_cost">-9479.32</td>
-                        <td class="total_cost_pig">-3.88</td>
-                    </tr>
-                    <tbody id="row-death-loss" class="collapse">
-                        <tr class="death_loss pig_value">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Pig Value</td>
-                            <td class="cost">-9479.32</td>
-                            <td class="cost_pig">-3.88</td>
+                        <tbody id="row-discount-loss" class="collapse">
+                            <tr class="discount_loss pig_value">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Pig Value</td>
+                                <td class="cost">-4639.80</td>
+                                <td class="cost_pig">-1.90</td>
+                            </tr>
+                        </tbody>
+                        <tr data-toggle="collapse" data-target="#row-transport-death-loss" class="clickable transport_death_loss">
+                            <th>Transport Death Loss</th>
+                            <td class="actual">3.07%</td>
+                            <td class="target">0.75%</td>
+                            <td>Total</td>
+                            <td class="total_cost">0.00</td>
+                            <td class="total_cost_pig">0.00</td>
                         </tr>
-                    </tbody>
-                    <tr data-toggle="collapse" data-target="#row-discount-loss" class="clickable discount_loss">
-                        <th>Discount Loss</th>
-                        <td>3.07%</td>
-                        <td>0.75%</td>
-                        <td>Total</td>
-                        <td class="total_cost">-4639.80</td>
-                        <td class="total_cost_pig">-1.90</td>
-                    </tr>
-                    <tbody id="row-discount-loss" class="collapse">
-                        <tr class="discount_loss pig_value">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Pig Value</td>
-                            <td class="cost">-4639.80</td>
-                            <td class="cost_pig">-1.90</td>
+                        <tbody id="row-transport-death-loss" class="collapse">
+                            <tr class="transport_death_loss pig_value">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Pig Value</td>
+                                <td class="cost">0.00</td>
+                                <td class="cost_pig">0.00</td>
+                            </tr>
+                        </tbody>
+                        <tr data-toggle="collapse" data-target="#row-feed-conversion" class="clickable feed_conversion">
+                            <th>Feed Conversion</th>
+                            <td class="actual">2.76</td>
+                            <td class="target">2.80</td>
+                            <td>Total</td>
+                            <td class="total_cost">2697.20</td>
+                            <td class="total_cost_pig">1.10</td>
                         </tr>
-                    </tbody>
-                    <tr data-toggle="collapse" data-target="#row-transport-death-loss" class="clickable transport_death_loss">
-                        <th>Transport Death Loss</th>
-                        <td>3.07%</td>
-                        <td>0.75%</td>
-                        <td>Total</td>
-                        <td class="total_cost">0.00</td>
-                        <td class="total_cost_pig">0.00</td>
-                    </tr>
-                    <tbody id="row-transport-death-loss" class="collapse">
-                        <tr class="transport_death_loss pig_value">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Pig Value</td>
-                            <td class="cost">0.00</td>
-                            <td class="cost_pig">0.00</td>
+                        <tbody id="row-feed-conversion" class="collapse">
+                            <tr class="feed_conversion feed_grinding">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Feed Grinding</td>
+                                <td class="cost">158.68</td>
+                                <td class="cost_pig">0.06</td>
+                            </tr>
+                            <tr class="feed_conversion feed_delivery">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Feed Delivery</td>
+                                <td class="cost">0.00</td>
+                                <td class="cost_pig">0.00</td>
+                            </tr>
+                            <tr class="feed_conversion feed_value">
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td>Feed Value</td>
+                                <td class="cost">2538.51</td>
+                                <td class="cost_pig">1.04</td>
+                            </tr>
+                        </tbody>
+                        <tr class="avg_live_wt">
+                            <th>Group Avg Live Wt</th>
+                            <td class="actual">276.6</td>
+                            <td class="target"></td>
+                            <td>Total</td>
+                            <td class="total_cost">-9945.03</td>
+                            <td class="total_cost_pig">-4.07</td>
                         </tr>
-                    </tbody>
-                    <tr data-toggle="collapse" data-target="#row-feed-conversion" class="clickable feed_conversion">
-                        <th>Feed Conversion</th>
-                        <td>2.76</td>
-                        <td>2.80</td>
-                        <td>Total</td>
-                        <td class="total_cost">2697.20</td>
-                        <td class="total_cost_pig">1.10</td>
-                    </tr>
-                    <tbody id="row-feed-conversion" class="collapse">
-                        <tr class="feed_conversion feed_grinding">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Feed Grinding</td>
-                            <td class="cost">158.68</td>
-                            <td class="cost_pig">0.06</td>
+                        <tr class="market_std_dev_carcass_wt">
+                            <th>Group Std Dev Carcass Wt</th>
+                            <td class="actual">17.5</td>
+                            <td class="target">14.0</td>
+                            <td>Total</td>
+                            <td class="total_cost">-2685.90</td>
+                            <td class="total_cost_pig">-1.10</td>
                         </tr>
-                        <tr class="feed_conversion feed_delivery">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Feed Delivery</td>
-                            <td class="cost">0.00</td>
-                            <td class="cost_pig">0.00</td>
+                        <tr class="load_avg_std_dev_carcass_wt">
+                            <th>Load Std Dev Carcass Wt</th>
+                            <td class="actual">18.0</td>
+                            <td class="target">16.0</td>
+                            <td>Total</td>
+                            <td class="total_cost">0</td>
+                            <td class="total_cost_pig">0</td>
                         </tr>
-                        <tr class="feed_conversion feed_value">
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td>Feed Value</td>
-                            <td class="cost">2538.51</td>
-                            <td class="cost_pig">1.04</td>
-                        </tr>
-                    </tbody>
-                    <tr class="avg_live_wt">
-                        <th>Avg Live Wt</th>
-                        <td>276.6</td>
-                        <td></td>
-                        <td>Total</td>
-                        <td class="total_cost">-9945.03</td>
-                        <td class="total_cost_pig">-4.07</td>
-                    </tr>
-                    <tr class="group_std_dev">
-                        <th>Group Std Dev Carcass Wt</th>
-                        <td>17.5</td>
-                        <td>14.0</td>
-                        <td>Total</td>
-                        <td class="total_cost">-2685.90</td>
-                        <td class="total_cost_pig">-1.10</td>
-                    </tr>
-                    <tr class="load_std_dev">
-                        <th>Load Std Dev Carcass Wt</th>
-                        <td>18.0</td>
-                        <td>16.0</td>
-                        <td>Total</td>
-                        <td class="total_cost">0</td>
-                        <td class="total_cost_pig">0</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -583,6 +609,86 @@
                         }
                     }
                 },
+                yield_per: {
+                        validators: {
+                            notEmpty: {
+                                    message: "Yield Percent is required"
+                            },
+                            numeric: {
+                                message: "Yield Percent must be a number",
+                                decimalSeparator: "."
+                            },
+                            between: {
+                                min: 0,
+                                max: 1,
+                                message: "Yield Percent must be between %s and %s"
+                            }
+                        }
+                },
+                lean_per: {
+                    validators: {
+                            notEmpty: {
+                                message: "Lean Percent is required"
+                            },
+                        numeric: {
+                            message: "Lean Percent must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 1,
+                            message: "Lean Percent must be between %s and %s"
+                        }
+                    }
+                },
+                market_std_dev_carcass_wt: {
+                    validators: {
+                            notEmpty: {
+                                message: "Group Std Dev is required"
+                            },
+                        numeric: {
+                            message: "Group Std Dev must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 30,
+                            message: "Group Std Dev must be between %s and %s"
+                        }
+                    }
+                },
+                load_avg_std_dev_carcass_wt: {
+                    validators: {
+                            notEmpty: {
+                                message: "Load Std Dev is required"
+                            },
+                        numeric: {
+                            message: "Load Std Dev must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 30,
+                            message: "Load Std Dev must be between %s and %s"
+                        }
+                    }
+                },
+                feed_conversion: {
+                    validators: {
+                            notEmpty: {
+                                message: "Feed Conversion is required"
+                            },
+                        numeric: {
+                            message: "Feed Conversion must be a number",
+                            decimalSeparator: "."
+                        },
+                        between: {
+                            min: 0,
+                            max: 4,
+                            message: "Feed Conversion must be between %s and %s"
+                        }
+                    }
+                },
                 feed_conversion: {
                     validators: {
                         notEmpty: {
@@ -783,16 +889,68 @@
         $(this).parent().removeClass("has-success");
     });
 
+    $("select[name='group_num']").change(function () {
+        getGroupInfo();
+    });
+
     $("#btnGenerateReportCard").click(function () {
         calculateReportCard();
     });
 
+    function getGroupInfo() {
+        var url = "http://wsf-web-app.azurewebsites.net/api/v1/budgets/";
+        var urlTarget = url + $("select[name='group_num']").val() + "?budget_type=target"
+        $.getJSON(urlTarget).done(function (data) {
+            var budgetTarget = data.budget[0];
+            for (var key in budgetTarget) {
+                $("." + key + " .target").html(budgetTarget[key]);
+            }
+        });
+
+        var urlActual = url + $("select[name='group_num']").val() + "?budget_type=actual"
+        console.log(urlActual)
+        $.getJSON(urlActual).done(function (data) {
+            var budgetActual = data.budget[0];
+            console.log(budgetActual);
+            for (var key in budgetActual) {
+                $("#frmReportCard input[name='" + key + "']").val(budgetActual[key]);
+            }
+        });
+
+        //calculateReportCard();
+    }
+
     function calculateReportCard() {
         var url = "http://wsf-web-app.azurewebsites.net/api/v1/reportCard";
         url = url + "?" + $("#frmGroupNum").serialize() + "&" + $("#frmReportCard").serialize();
+
+        var reportCardDict = {}
+        var reportCardArr = $("#frmReportCard").serializeArray();
+        for (var i in reportCardArr) {
+            reportCardDict[reportCardArr[i]["name"]] = reportCardArr[i]["value"];
+        }
+
         $.getJSON(url).done(function (data) {
-            reportCard = data.report_card;
-            console.log(reportCard);
+            var reportCard = data.report_card;
+
+            for (var tot in reportCard["tot"]) {
+                for (var sub in reportCard["tot"][tot]["sub"]) {
+                    $("." + tot + "." + sub + " " + "." + "cost").html(reportCard["tot"][tot]["sub"][sub]["cost"]);
+                    $("." + tot + "." + sub + " " + "." + "cost_pig").html(reportCard["tot"][tot]["sub"][sub]["cost_pig"]);
+                }
+
+                $("." + tot + " " + "." + "total_cost").html(reportCard["tot"][tot]["total_cost"]);
+                $("." + tot + " " + "." + "total_cost_pig").html(reportCard["tot"][tot]["total_cost_pig"]);
+            }
+
+            $(".start_qty .actual").html(reportCardDict["start_num"]);
+            $(".death_loss .actual").html(Math.round((reportCardDict["death_num"] / reportCardDict["start_num"]) * 10000) / 100 + "%")
+            $(".discount_loss .actual").html(Math.round((reportCardDict["discount_num"] / reportCardDict["start_num"]) * 10000) / 100 + "%")
+            $(".transport_death_loss .actual").html(Math.round((reportCardDict["transport_death_num"] / reportCardDict["start_num"]) * 10000) / 100 + "%")
+            $(".feed_conversion .actual").html(reportCardDict["feed_conversion"]);
+            $(".avg_live_wt .actual").html(reportCardDict["market_avg_wt"]);
+            $(".market_std_dev_carcass_wt .actual").html(reportCardDict["market_std_dev_carcass_wt"]);
+            $(".load_avg_std_dev_carcass_wt .actual").html(reportCardDict["load_avg_std_dev_carcass_wt"]);
         });
     }
 
